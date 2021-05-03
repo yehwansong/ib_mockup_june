@@ -90,24 +90,24 @@ body{
     background-size: cover;
 }
 
- .weekwrapper_0 .board, .spiralwrapper_0 .board{ background-image: url(img/bg-01.png);}
- .weekwrapper_1 .board, .spiralwrapper_1 .board{ background-image: url(img/bg-02.png);}
- .weekwrapper_2 .board, .spiralwrapper_2 .board{ background-image: url(img/bg-03.png);}
- .weekwrapper_3 .board, .spiralwrapper_3 .board{ background-image: url(img/bg-04.png);}
- .weekwrapper_4 .board, .spiralwrapper_4 .board{ background-image: url(img/bg-05.png);}
- .weekwrapper_5 .board, .spiralwrapper_5 .board{ background-image: url(img/bg-06.png);}
- .weekwrapper_6 .board, .spiralwrapper_6 .board{ background-image: url(img/bg-07.png);}
- .weekwrapper_7 .board, .spiralwrapper_7 .board{ background-image: url(img/bg-08.png);}
- .weekwrapper_8 .board, .spiralwrapper_8 .board{ background-image: url(img/bg-09.png);}
- .weekwrapper_9 .board, .spiralwrapper_9 .board{ background-image: url(img/bg-10.png);}
-.weekwrapper_10 .board,.spiralwrapper_10 .board{background-image: url(img/bg-11.png);}
-.weekwrapper_11 .board,.spiralwrapper_11 .board{background-image: url(img/bg-12.png);}
-.weekwrapper_12 .board,.spiralwrapper_12 .board{background-image: url(img/bg-13.png);}
-.weekwrapper_13 .board,.spiralwrapper_13 .board{background-image: url(img/bg-14.png);}
-.weekwrapper_14 .board,.spiralwrapper_14 .board{background-image: url(img/bg-15.png);}
-.weekwrapper_15 .board,.spiralwrapper_15 .board{background-image: url(img/bg-16.png);}
-.weekwrapper_16 .board,.spiralwrapper_16 .board{background-image: url(img/bg-17.png);}
-.weekwrapper_17 .board,.spiralwrapper_17 .board{background-image: url(img/bg-18.png);}
+ .weekwrapper_0 .board, .spiralwrapper_0 .board{ background-image: url(img_dummy/bg-01.png);}
+ .weekwrapper_1 .board, .spiralwrapper_1 .board{ background-image: url(img_dummy/bg-02.png);}
+ .weekwrapper_2 .board, .spiralwrapper_2 .board{ background-image: url(img_dummy/bg-03.png);}
+ .weekwrapper_3 .board, .spiralwrapper_3 .board{ background-image: url(img_dummy/bg-04.png);}
+ .weekwrapper_4 .board, .spiralwrapper_4 .board{ background-image: url(img_dummy/bg-05.png);}
+ .weekwrapper_5 .board, .spiralwrapper_5 .board{ background-image: url(img_dummy/bg-06.png);}
+ .weekwrapper_6 .board, .spiralwrapper_6 .board{ background-image: url(img_dummy/bg-07.png);}
+ .weekwrapper_7 .board, .spiralwrapper_7 .board{ background-image: url(img_dummy/bg-08.png);}
+ .weekwrapper_8 .board, .spiralwrapper_8 .board{ background-image: url(img_dummy/bg-09.png);}
+ .weekwrapper_9 .board, .spiralwrapper_9 .board{ background-image: url(img_dummy/bg-10.png);}
+.weekwrapper_10 .board,.spiralwrapper_10 .board{background-image: url(img_dummy/bg-11.png);}
+.weekwrapper_11 .board,.spiralwrapper_11 .board{background-image: url(img_dummy/bg-12.png);}
+.weekwrapper_12 .board,.spiralwrapper_12 .board{background-image: url(img_dummy/bg-13.png);}
+.weekwrapper_13 .board,.spiralwrapper_13 .board{background-image: url(img_dummy/bg-14.png);}
+.weekwrapper_14 .board,.spiralwrapper_14 .board{background-image: url(img_dummy/bg-15.png);}
+.weekwrapper_15 .board,.spiralwrapper_15 .board{background-image: url(img_dummy/bg-16.png);}
+.weekwrapper_16 .board,.spiralwrapper_16 .board{background-image: url(img_dummy/bg-17.png);}
+.weekwrapper_17 .board,.spiralwrapper_17 .board{background-image: url(img_dummy/bg-18.png);}
 
 .hidden .weekwrapper_4 .board, .hidden .spiralwrapper_4 .board{ background-image: url(img_b/bg-05.png); opacity: 0.2}
 .hidden .weekwrapper_5 .board, .hidden .spiralwrapper_5 .board{ background-image: url(img_b/bg-06.png); opacity: 0.2}
@@ -123,7 +123,7 @@ body{
 .hidden .weekwrapper_15 .board,.hidden .spiralwrapper_15 .board{background-image: url(img_b/bg-16.png); opacity: 0.2}
 .hidden .weekwrapper_16 .board,.hidden .spiralwrapper_16 .board{background-image: url(img_b/bg-17.png); opacity: 0.2}
 .hidden .weekwrapper_17 .board,.hidden .spiralwrapper_17 .board{background-image: url(img_b/bg-18.png); opacity: 0.2}
-/*.weekwrapper_24 .board{background-image: url(img/bg-25.png);}*/
+/*.weekwrapper_24 .board{background-image: url(img_dummy/bg-25.png);}*/
 .week_lastpage_arrowl{
 	position: fixed;
 	left: 0;
@@ -238,6 +238,8 @@ body{
 
 
 .spiral_whole_wrapper{
+	
+    transform-style: preserve-3d;
     width: 100vw;
     height: 100vw;
     left: 0;
