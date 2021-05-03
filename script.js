@@ -1,7 +1,9 @@
 $(document).ready(function(){
 	var data_array
+	var icon_array
 	var weekoffset = 17
-	var test = 6
+	var test = 1
+	var current_scroll
 	var currentweek = getWeekNumber(new Date()) - weekoffset + test;
 	console.log(currentweek )
 	var height_unit = 90
@@ -9,26 +11,20 @@ $(document).ready(function(){
 	// var last_height = 20
 	var translatey = 70
 	var currentrotation = 0
-	console.log(new Date().toString())
 	var inittime_d = new Date().toString().split(' ')[0]
-if(new Date().toString().split(' ')[0]==='Mon'){var inittime_d = 0}
-if(new Date().toString().split(' ')[0]==='Tue'){var inittime_d = 1}
-if(new Date().toString().split(' ')[0]==='Wed'){var inittime_d = 2}
-if(new Date().toString().split(' ')[0]==='Thu'){var inittime_d = 3}
-if(new Date().toString().split(' ')[0]==='Fri'){var inittime_d = 4}
-if(new Date().toString().split(' ')[0]==='Sat'){var inittime_d = 5}
-if(new Date().toString().split(' ')[0]==='Sun'){var inittime_d = 6}
+	if(new Date().toString().split(' ')[0]==='Mon'){var inittime_d = 0}
+	if(new Date().toString().split(' ')[0]==='Tue'){var inittime_d = 1}
+	if(new Date().toString().split(' ')[0]==='Wed'){var inittime_d = 2}
+	if(new Date().toString().split(' ')[0]==='Thu'){var inittime_d = 3}
+	if(new Date().toString().split(' ')[0]==='Fri'){var inittime_d = 4}
+	if(new Date().toString().split(' ')[0]==='Sat'){var inittime_d = 5}
+	if(new Date().toString().split(' ')[0]==='Sun'){var inittime_d = 6}
 
 	var inittime_h = new Date().toString().split(' ')[4].split(':')[0]
 	var inittime_m = new Date().toString().split(' ')[4].split(':')[1]
 	var inittime_s = new Date().toString().split(' ')[4].split(':')[2].split('.')[0]
 	
 	var initrotation = inittime_d*(translatey/7) + inittime_h*(translatey/7/24) + inittime_m*(translatey/7/24/60) + inittime_s*(translatey/7/24/60/60)
-	console.log()
-	console.log(inittime_d)
-	console.log(inittime_h)
-	console.log(inittime_m)
-	console.log(inittime_s)
 	var scrollpos = 0
 
 	var mark_amount = 0
@@ -40,6 +36,7 @@ if(new Date().toString().split(' ')[0]==='Sun'){var inittime_d = 6}
 	var lc_counter = 1
 	var wrapper_translatez = 10
 	var ismobile = false
+	var scrollinit = true
 	if(window.innerHeight > window.innerWidth){
 		ismobile = true
 	}
@@ -74,17 +71,8 @@ if(new Date().toString().split(' ')[0]==='Sun'){var inittime_d = 6}
 		'14',
 		'15',
 		'16',
-		'17'
-		,
+		'17',
 		'18'
-		// ,
-		// '19'
-		// ,
-		// '20',
-		// '21',
-		// '22',
-		// '23',
-		// '24'
 	]
 if(window.location.hash && window.location.hash.split('#')[1] === 'spiral') {
 	$('body').addClass('spiral_view')
@@ -111,6 +99,14 @@ function get_data_array() {
     var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+            icon_array = JSON.parse(this.responseText).values
+        }
+    }
+    xhttp.open("GET", "https://sheets.googleapis.com/v4/spreadsheets/1j4pOnmU4NTyM7XoeXHG67Uy7VMfT_bAp4Kt0JxokUag/values/Items?key=AIzaSyAmcp44cOi9-6XM4EqjCjIQLbj_D__1YPE");
+    xhttp.send();
+    var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
             data_array = JSON.parse(this.responseText).values
             console.log(data_array)
             wholeweek_length = (data_array.length-1)
@@ -124,8 +120,7 @@ function get_data_array() {
     			}
     		}
     		for (var i = 0; i < week_array.length; i++) {
-					create_spiral(data_array, i, (week_array.length-i)*(50/(week_array.length+1)), false)
-
+				create_spiral(data_array, i, (week_array.length-i)*(50/(week_array.length+1)), false)
     		}
             		popup()
     				// analyze_data(data_array)
@@ -133,7 +128,7 @@ function get_data_array() {
     				week_lastpage_swipe()
         };
     }
-    xhttp.open("GET", "https://sheets.googleapis.com/v4/spreadsheets/1j4pOnmU4NTyM7XoeXHG67Uy7VMfT_bAp4Kt0JxokUag/values/Sheet1?key=AIzaSyAmcp44cOi9-6XM4EqjCjIQLbj_D__1YPE");
+    xhttp.open("GET", "https://sheets.googleapis.com/v4/spreadsheets/1j4pOnmU4NTyM7XoeXHG67Uy7VMfT_bAp4Kt0JxokUag/values/Info?key=AIzaSyAmcp44cOi9-6XM4EqjCjIQLbj_D__1YPE");
     xhttp.send();
 }
 
@@ -155,22 +150,17 @@ function get_data_array() {
 							background-position:'+ (-1*get_width(translatez,number_of_board)*(i)) +'vw top;\
 							"></div>')
 						    append_weekinfo(i,k,classname)
+						    append_weekitems(i,k,classname)
 							if(i == number_of_board-1){
 								if(callback){
 									$('.fake_scroll').css({'height':((week_array.length-1)*translatey/scrollspeed) + 'vh'})
 									$('.board').css({'height':height_unit+'vh'})
-console.log(translatey)
-console.log(currentweek)
-console.log(initrotation)
-console.log(initrotation)
-console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeight/100)
-									// $('.weekwrapper_24 .board').css({'height':(height_unit+last_height)+'vh'})
 									$('.fake_scroll_wrapper').scrollTop((translatey*currentweek + initrotation)/scrollspeed*window.innerHeight/100)
 
 									scrollpos = translatey*currentweek + initrotation
 						            rotate_time()
 					            	week_scroll()
-				    				move_wrapper()
+				    				move_wrapper(true)
 					            	show_week()
 					            	settingup_lastpage()
 						            setTimeout(function(){hovereffect()},1000)
@@ -215,36 +205,45 @@ console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeig
             	$('.camera_view').css({'height':(week_array.length - currentweek + center_width_r)*spiral_unit +'px'})
             }
             function append_weekinfo(selectedboard,selectedweek,selectedclass){
-	            // for (var i = 2; i < data_array[selectedweek].length; i++) {
 	        		if(parseInt(data_array[selectedweek+1][selectedboard+2]) !== 0){
-		        		// if(data_array[selectedweek+1][selectedboard+2].split(':')[0] === '/BG'){
-		        		// 	return false
-		        		// }
-	        			// if(data_array[selectedweek+1][selectedboard+2] === '/LC'){
-	        			// 	lc_counter++
-		        		// 	$('.'+selectedclass+' .board_info_time_'+i).append(data_array[selectedweek][i-1])
-		        		// 	$('.'+selectedclass+' .board_info_time_'+i).find('.content').css({'left':(lc_counter-1)*-100+'%'})
-		        		// }else{
-		        			// if(lc_counter>1){
-		        			// 	for (var j = lc_counter; j >= 1; j--) {
-		        			// 		$('.'+selectedclass+' .board_info_time_'+(i-j)).find('.content').css({'width':lc_counter*100+'%'})
-		        			// 	}
-		        			// }
-	        				// lc_counter=1
-	        				$('.'+selectedclass+' .board_info_time_'+selectedboard).append(data_array[selectedweek+1][selectedboard+2])
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard).append('<div class="popups popups_info">'+data_array[selectedweek+1][selectedboard+2]+'</div>')
 	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').addClass('popup_original').prepend('<div class="popups_tab"><div class="close"></div></div>')
 	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').clone().removeClass('popup_original').addClass('popup_shadow').insertBefore($('.'+selectedclass+' .board_info_time_'+selectedboard+' .popup_original'))
-		        		// }
 	        		}
-	            // }
+            }
+
+            function append_weekitems(selectedboard,selectedweek,selectedclass){
+            	if(typeof icon_array == 'undefined'){
+            		setTimeout(function(){append_weekitems(selectedboard,selectedweek,selectedclass)},500)
+            	}else{
+	        		if(icon_array[selectedweek+1][selectedboard+2] === 'clock'){
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard).append('<div class="popups popups_icon popups_icon_clock"></div>')
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').addClass('popup_original').prepend('<div class="popups_tab"><div class="close"></div></div>')
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').clone().removeClass('popup_original').addClass('popup_shadow').insertBefore($('.'+selectedclass+' .board_info_time_'+selectedboard+' .popup_original'))
+	        		}
+	        		if(icon_array[selectedweek+1][selectedboard+2] === 'podcast'){
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard).append('<div class="popups popups_icon popups_icon_podcast"></div>')
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').addClass('popup_original').prepend('<div class="popups_tab"><div class="close"></div></div>')
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').clone().removeClass('popup_original').addClass('popup_shadow').insertBefore($('.'+selectedclass+' .board_info_time_'+selectedboard+' .popup_original'))
+	        		}
+	        		if(icon_array[selectedweek+1][selectedboard+2] === 'weather'){
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard).append('<div class="popups popups_icon popups_icon_weather"></div>')
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').addClass('popup_original').prepend('<div class="popups_tab"><div class="close"></div></div>')
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').clone().removeClass('popup_original').addClass('popup_shadow').insertBefore($('.'+selectedclass+' .board_info_time_'+selectedboard+' .popup_original'))
+	        		}
+            	}
             }
 
 
             function week_scroll(){
 	            $('.fake_scroll_wrapper').on('scroll', function() {
-            	console.log(scrollpos)
+	            	if(scrollinit){
+	            		scrollinit = false
+	            	}else{
+	            		$('.followcursor').css({'opacity':0})
+	            	}
 				    scrollpos = $('.fake_scroll_wrapper').scrollTop()/(window.innerHeight/100) * scrollspeed
-				    move_wrapper()
+				    move_wrapper(false)
 
 					$('.camera_wrapper').css({'transform':'rotate('+(pos_to_rot(scrollpos+currentrotation)+90)+'deg)'})
 					if(pos_to_rot(scrollpos+currentrotation)%360 < 180){
@@ -257,10 +256,8 @@ console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeig
 				});
             }
             function rotate_time(){
-            	currentrotation = currentrotation + 360/(86400/10)
-
-				move_wrapper()
-				console.log('jey')
+            	currentrotation = currentrotation + 360/(24*60*7)
+				move_wrapper(false)
 				$('.camera_wrapper').css({'transform':'rotate('+(pos_to_rot(scrollpos+currentrotation)+90)+'deg)'})
 				if(pos_to_rot(scrollpos+currentrotation)%360 < 180){
 					$('.camera_wrapper').css({'margin-top':-0.5*spiral_unit + 'px'})
@@ -269,9 +266,9 @@ console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeig
 				}
 				rotatetime_timeout = setTimeout(function(){
 					rotate_time()
-				},10000)
+				},60*1000)
             }
-            function move_wrapper(){
+            function move_wrapper(init){
             	if(scrollpos > scrolldirection_value){
             		scrolldirection = 'down'
             	}else{
@@ -287,8 +284,9 @@ console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeig
             		transition = (translatey-scrollpos%translatey) * translatey/20
             	}
             	var k = Math.floor(scrollpos/translatey)
+
    				if($('.fake_scroll_wrapper').scrollTop() + $(window).height() > $('.fake_scroll').height()-100) {
-   					console.log($('.fake_scroll_wrapper').scrollTop())
+            		current_scroll = k
    					$('.week_lastpage_arrowl').show()
 					$('.week_lastpage_arrowr').show()
 					// clearTimeout(rotatetime_timeout)
@@ -329,32 +327,44 @@ console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeig
  
 	            		transition_unit = 0
 	            	}else{
-	            		$('.weekwrapper_'+ Math.floor(k-2)+' .board').css({'background-color' : 'rgb(45,84,75)'})
-	            		$('.weekwrapper_'+ Math.floor(k-1)+' .board').css({'background-color' : 'rgb(128,172,161)'})
-	            		$('.weekwrapper_'+ Math.floor(k)+' .board').css({'background-color' : 'rgb(143,187,176)'})
-	            		// console.log(map_range(transition_unit, 0, 10, -5, -20 ))
-	            		$('.weekwrapper_'+ Math.floor(k-2)).css({transform : 'translateY('+((k-2)*translatey)+'vh) translateY(-20vh) scaleX(4.0) scaleZ(4.0)'})
-	            		$('.weekwrapper_'+ Math.floor(k-1)).css({transform : 'translateY('+((k-1)*translatey)+'vh) translateY(-5vh)  scaleX(2.5) scaleZ(2.5)'})
-	            		$('.weekwrapper_'+ Math.floor(k-0)).css({transform : 'translateY('+((k-0)*translatey)+'vh)'})
-	            		$('.weekwrapper_'+ Math.floor(k+1)).css({transform : 'translateY('+((k+1)*translatey)+'vh) translateY(-13vh) scaleX(.50) scaleZ(.50)'})
-	            		$('.weekwrapper_'+ Math.floor(k+2)).css({transform : 'translateY('+((k+2)*translatey)+'vh) translateY(-86vh) scaleX(.25) scaleZ(.25)'})
-	            		$('.weekwrapper_'+ Math.floor(k+3)).css({transform : 'translateY('+((k+3)*translatey)+'vh) translateY(-156vh) scaleX(.2) scaleZ(.2)'})
-	            		$('.spiralwrapper').each(function(index){
-		            		if(index<k+1){
-		            			$(this).css({transform:'translateX(-50%) translateY(-50%) rotateX(-30deg) rotateY(180deg) translateY(0%)'})
-			            	}else{
-		            			$(this).css({transform:'translateX(-50%) translateY(-50%) rotateX(-30deg) rotateY(180deg) translateY(100%)'})
-			            	}
-	            		})
+            			if(current_scroll !== k){
+
+				    	currentweek = k
+				    	// show_week()
+            				current_scroll = k
+            				$('.weekwarpper_prev2').removeClass('weekwarpper_prev2')
+							$('.weekwarpper_prev1').removeClass('weekwarpper_prev1')
+							$('.weekwarpper_current').removeClass('weekwarpper_current')
+							$('.weekwarpper_next1').removeClass('weekwarpper_next1')
+							$('.weekwarpper_next2').removeClass('weekwarpper_next2')
+							$('.weekwarpper_next3').removeClass('weekwarpper_next3')
+            				$('.weekwrapper_'+ Math.floor(k-2)).addClass('weekwarpper_prev2')
+							$('.weekwrapper_'+ Math.floor(k-1)).addClass('weekwarpper_prev1')
+							$('.weekwrapper_'+ Math.floor(k-0)).addClass('weekwarpper_current')
+							$('.weekwrapper_'+ Math.floor(k+1)).addClass('weekwarpper_next1')
+							$('.weekwrapper_'+ Math.floor(k+2)).addClass('weekwarpper_next2')
+							$('.weekwrapper_'+ Math.floor(k+3)).addClass('weekwarpper_next3')
+		            		$('.weekwrapper_'+ Math.floor(k-2)).css({transform : 'translateY('+((k-2)*translatey)+'vh) translateY(-20vh) scaleX(4.0) scaleZ(4.0)'})
+		            		$('.weekwrapper_'+ Math.floor(k-1)).css({transform : 'translateY('+((k-1)*translatey)+'vh) translateY(-5vh)  scaleX(2.5) scaleZ(2.5)'})
+		            		$('.weekwrapper_'+ Math.floor(k-0)).css({transform : 'translateY('+((k-0)*translatey)+'vh)'})
+		            		$('.weekwrapper_'+ Math.floor(k+1)).css({transform : 'translateY('+((k+1)*translatey)+'vh) translateY(-13vh) scaleX(.50) scaleZ(.50)'})
+		            		$('.weekwrapper_'+ Math.floor(k+2)).css({transform : 'translateY('+((k+2)*translatey)+'vh) translateY(-86vh) scaleX(.25) scaleZ(.25)'})
+		            		$('.weekwrapper_'+ Math.floor(k+3)).css({transform : 'translateY('+((k+3)*translatey)+'vh) translateY(-156vh) scaleX(.2) scaleZ(.2)'})
+		            		$('.spiralwrapper').each(function(index){
+			            		if(index<k+1){
+			            			$(this).css({transform:'translateX(-50%) translateY(-50%) rotateX(-30deg) rotateY(180deg) translateY(0%)'})
+				            	}else{
+			            			$(this).css({transform:'translateX(-50%) translateY(-50%) rotateX(-30deg) rotateY(180deg) translateY(100%)'})
+				            	}
+		            		})
+            			}
 	            	}
 
-	        		if(Math.floor(scrollpos/translatey) == week_array.length-2 && transition>0){
-	        			// $('.weekwrapper_24').css({'margin-top':(-last_height+transition/height_unit*last_height) + 'vh'})
-	        		}
+	            	if(init){
+	            		$('.weekwarpper_next1').addClass('next_comingsoon')
+	            		$('.weekwarpper_next1').nextAll().addClass('comingsoon')
+	            	}
 
-
-
-	        		console.log(-1*(Math.floor(scrollpos/translatey)*translatey))
             		if(scrolldirection === 'down' && transition>0){
 						$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})
 					}else if(scrolldirection === 'up' && transition>0){
@@ -363,10 +373,10 @@ console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeig
 						$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})
 					}
             	}
-				    if(Math.floor(($('.fake_scroll_wrapper').scrollTop()/(window.innerHeight/100))/translatey*scrollspeed) !== currentweek){
-				    	currentweek = k
-				    	show_week()
-				    }
+				    // if(Math.floor(($('.fake_scroll_wrapper').scrollTop()/(window.innerHeight/100))/translatey*scrollspeed) !== currentweek){
+				    // 	currentweek = k
+				    // 	show_week()
+				    // }
             }
             function show_week(){
             	$('.weekwrapper').hide()
@@ -408,9 +418,25 @@ console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeig
 
 
             function popup(){
-            	$('.weekwrapper').each(function(){
-            		var value = $(this).attr('class').split('weekwrapper_info_month_')[1].split(' ')[0]
-            		$(this).append('<div class="info_popup_wrapper"><div class="info_popup">'+value+'</div></div>')
+            	$('.weekwrapper').each(function(index){
+            		var value = $(this).attr('class').split('weekwrapper_info_month_')[1].split('_')[0]
+            		$(this).append('<div class="info_popup_wrapper info_popup_wrapper_1" style="transform: translateX(-50%) rotateY('+(360/7 * 0)+'deg) translateZ('+(-1*(translatez-1))+'vw)"><div class="info_popup">'+value+'1</div></div>')
+            		$(this).append('<div class="info_popup_wrapper info_popup_wrapper_2" style="transform: translateX(-50%) rotateY('+(360/7 * 1)+'deg) translateZ('+(-1*(translatez-1))+'vw)"><div class="info_popup">'+value+'2</div></div>')
+            		$(this).append('<div class="info_popup_wrapper info_popup_wrapper_3" style="transform: translateX(-50%) rotateY('+(360/7 * 2)+'deg) translateZ('+(-1*(translatez-1))+'vw)"><div class="info_popup">'+value+'3</div></div>')
+            		$(this).append('<div class="info_popup_wrapper info_popup_wrapper_4" style="transform: translateX(-50%) rotateY('+(360/7 * 3)+'deg) translateZ('+(-1*(translatez-1))+'vw)"><div class="info_popup">'+value+'4</div></div>')
+            		$(this).append('<div class="info_popup_wrapper info_popup_wrapper_5" style="transform: translateX(-50%) rotateY('+(360/7 * 4)+'deg) translateZ('+(-1*(translatez-1))+'vw)"><div class="info_popup">'+value+'5</div></div>')
+            		$(this).append('<div class="info_popup_wrapper info_popup_wrapper_6" style="transform: translateX(-50%) rotateY('+(360/7 * 5)+'deg) translateZ('+(-1*(translatez-1))+'vw)"><div class="info_popup">'+value+'6</div></div>')
+            		$(this).append('<div class="info_popup_wrapper info_popup_wrapper_7" style="transform: translateX(-50%) rotateY('+(360/7 * 6)+'deg) translateZ('+(-1*(translatez-1))+'vw)"><div class="info_popup">'+value+'7</div></div>')
+            		if(index == $('.weekwrapper').length-1){
+	            		$('.next_comingsoon').find('.info_popup_wrapper').each(function(index){
+	            			console.log('1')
+	            			$(this).find('.info_popup').html('D-'+(index+1))
+	            		})
+	            		$('.comingsoon').find('.info_popup_wrapper').each(function(index){
+	            			console.log('2')
+	            			$(this).find('.info_popup').html('D-'+(index+8))
+	            		})
+	            	}
             	})
 	        }
             function hovereffect(){
@@ -461,9 +487,21 @@ console.log((translatey*currentweek + initrotation)/scrollspeed*window.innerHeig
 				$('body').removeClass('spiral_view').addClass('week_view')
 				window.location.hash = 'week';
 			})
-            // $(document).mousemove(function(e){
-            // 	$('.popupbox').css({'left':e.pageX+'px','top':(e.pageY-$(window).scrollTop())+'px'})
-            // })
+            $('.spiral_whole_wrapper_wrapper').click(function(){
+				if(window.location.hash && window.location.hash.split('#')[1] === 'week') {
+	            	$('body').removeClass('week_view').addClass('spiral_view')
+					window.location.hash = 'spiral';
+				}
+            })
+			$('.week_whole_wrapper_wrapper').click(function(){
+				if(window.location.hash && window.location.hash.split('#')[1] === 'spiral') {
+					$('body').removeClass('spiral_view').addClass('week_view')
+					window.location.hash = 'week';
+				}
+			})
+            $(document).mousemove(function(e){
+            	$('.followcursor').css({'left':e.pageX+'px','top':(e.pageY)+'px'})
+            })
             function settingup_lastpage(){
             	$('.weekwrapper_'+(week_array.length-1)+' .board_info_time_0').append('\
             		<div class="title">Artists</div>\

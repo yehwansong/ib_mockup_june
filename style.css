@@ -52,6 +52,8 @@ body{
     top: 0;
     z-index: 1;
 	pointer-events: none;
+	display: none !important;
+    /*opacity: 0*/
 	/*margin-top: -12.5vh*/
 }
 .board{
@@ -67,8 +69,41 @@ body{
 	background-repeat: no-repeat;
 	transform-style: preserve-3d;
 }
-.weekwrapper_0 .board *,.weekwrapper_0 .board{
-	/*color:transparent !important;*/
+.weekwarpper_next3 .board{
+    background-color: hsl(164deg 23% 30%);
+}
+.weekwarpper_next2 .board{
+    background-color: hsl(164deg 23% 40%);
+}
+.weekwarpper_next1 .board{
+    background-color: hsl(164deg 23% 60%);
+}
+.weekwarpper_current .board{
+    background-color: rgb(153, 191, 181);
+}
+.weekwarpper_prev1 .board{
+    background-color: hsl(164deg 23% 50% / 70%);
+}
+.weekwarpper_prev2 .board{
+    background-color: hsl(164deg 23% 30% / 50%);
+}
+.weekwarpper_next3{
+    display: block !important;
+}
+.weekwarpper_next2{
+    display: block !important;
+}
+.weekwarpper_next1{
+    display: block !important;
+}
+.weekwarpper_current{
+    display: block !important;
+}
+.weekwarpper_prev1{
+    display: block !important;
+}
+.weekwarpper_prev2{
+    display: block !important;
 }
 .weekwrapper_0 .board img{
 	display: none;
@@ -90,24 +125,24 @@ body{
     background-size: cover;
 }
 
- .weekwrapper_0 .board, .spiralwrapper_0 .board{ background-image: url(img_dummy/bg-01.png);}
- .weekwrapper_1 .board, .spiralwrapper_1 .board{ background-image: url(img_dummy/bg-02.png);}
- .weekwrapper_2 .board, .spiralwrapper_2 .board{ background-image: url(img_dummy/bg-03.png);}
- .weekwrapper_3 .board, .spiralwrapper_3 .board{ background-image: url(img_dummy/bg-04.png);}
- .weekwrapper_4 .board, .spiralwrapper_4 .board{ background-image: url(img_dummy/bg-05.png);}
- .weekwrapper_5 .board, .spiralwrapper_5 .board{ background-image: url(img_dummy/bg-06.png);}
- .weekwrapper_6 .board, .spiralwrapper_6 .board{ background-image: url(img_dummy/bg-07.png);}
- .weekwrapper_7 .board, .spiralwrapper_7 .board{ background-image: url(img_dummy/bg-08.png);}
- .weekwrapper_8 .board, .spiralwrapper_8 .board{ background-image: url(img_dummy/bg-09.png);}
- .weekwrapper_9 .board, .spiralwrapper_9 .board{ background-image: url(img_dummy/bg-10.png);}
-.weekwrapper_10 .board,.spiralwrapper_10 .board{background-image: url(img_dummy/bg-11.png);}
-.weekwrapper_11 .board,.spiralwrapper_11 .board{background-image: url(img_dummy/bg-12.png);}
-.weekwrapper_12 .board,.spiralwrapper_12 .board{background-image: url(img_dummy/bg-13.png);}
-.weekwrapper_13 .board,.spiralwrapper_13 .board{background-image: url(img_dummy/bg-14.png);}
-.weekwrapper_14 .board,.spiralwrapper_14 .board{background-image: url(img_dummy/bg-15.png);}
-.weekwrapper_15 .board,.spiralwrapper_15 .board{background-image: url(img_dummy/bg-16.png);}
-.weekwrapper_16 .board,.spiralwrapper_16 .board{background-image: url(img_dummy/bg-17.png);}
-.weekwrapper_17 .board,.spiralwrapper_17 .board{background-image: url(img_dummy/bg-18.png);}
+ .weekwrapper_0 .board, .spiralwrapper_0 .board{ background-image: url(img/bg-01.png);}
+ .weekwrapper_1 .board, .spiralwrapper_1 .board{ background-image: url(img/bg-02.png);}
+ .weekwrapper_2 .board, .spiralwrapper_2 .board{ background-image: url(img/bg-03.png);}
+ .weekwrapper_3 .board, .spiralwrapper_3 .board{ background-image: url(img/bg-04.png);}
+ .weekwrapper_4 .board, .spiralwrapper_4 .board{ background-image: url(img/bg-05.png);}
+ .weekwrapper_5 .board, .spiralwrapper_5 .board{ background-image: url(img/bg-06.png);}
+ .weekwrapper_6 .board, .spiralwrapper_6 .board{ background-image: url(img/bg-07.png);}
+ .weekwrapper_7 .board, .spiralwrapper_7 .board{ background-image: url(img/bg-08.png);}
+ .weekwrapper_8 .board, .spiralwrapper_8 .board{ background-image: url(img/bg-09.png);}
+ .weekwrapper_9 .board, .spiralwrapper_9 .board{ background-image: url(img/bg-10.png);}
+.weekwrapper_10 .board,.spiralwrapper_10 .board{background-image: url(img/bg-11.png);}
+.weekwrapper_11 .board,.spiralwrapper_11 .board{background-image: url(img/bg-12.png);}
+.weekwrapper_12 .board,.spiralwrapper_12 .board{background-image: url(img/bg-13.png);}
+.weekwrapper_13 .board,.spiralwrapper_13 .board{background-image: url(img/bg-14.png);}
+.weekwrapper_14 .board,.spiralwrapper_14 .board{background-image: url(img/bg-15.png);}
+.weekwrapper_15 .board,.spiralwrapper_15 .board{background-image: url(img/bg-16.png);}
+.weekwrapper_16 .board,.spiralwrapper_16 .board{background-image: url(img/bg-17.png);}
+.weekwrapper_17 .board,.spiralwrapper_17 .board{background-image: url(img/bg-18.png);}
 
 .hidden .weekwrapper_4 .board, .hidden .spiralwrapper_4 .board{ background-image: url(img_b/bg-05.png); opacity: 0.2}
 .hidden .weekwrapper_5 .board, .hidden .spiralwrapper_5 .board{ background-image: url(img_b/bg-06.png); opacity: 0.2}
@@ -238,7 +273,7 @@ body{
 
 
 .spiral_whole_wrapper{
-	
+
     transform-style: preserve-3d;
     width: 100vw;
     height: 100vw;
@@ -295,22 +330,31 @@ body{
 .week_current	{transform: perspective(40vh) rotateX(0deg) 				   translateZ(90vh);}
 .week_next1		{transform: perspective(40vh) rotateX(0deg) translateY( 70vh)  translateZ(90vh);}
 .week_next2		{transform: perspective(40vh) rotateX(0deg) translateY( 75vh)  translateZ(90vh);}*/
-.info_popup_wrapper{
+.info_popup_wrapper {
+    transform: translateZ(-28vw) translateX(-50%);
     position: absolute;
     height: 80vh;
     top: 10vh;
-	width: 35vh;
-    left: 50vw;
-}
-.info_popup{
-    position: absolute;
-    width: 100%;
-    background-color: black;
-    margin-top: -5vh;
-    color: white;
-    font-size: 3vh;
+    width: auto;
+    left: 50%;
     display: none;
-    /*text-align: center;*/
+}
+.weekwarpper_current .info_popup_wrapper{
+	display: block;
+}
+.info_popup {
+    position: relative;
+    width: 100%;
+    /* background-color: black; */
+    margin-top: -7vh;
+    color: white;
+    font-size: 5vh;
+    /* display: none; */
+    text-align: center;
+    transform: translateX(-50%);
+    left: 50%;
+    font-weight: 900;
+    filter: drop-shadow(0vh 0vh 0.5vh black);
 }
 
 
@@ -381,24 +425,38 @@ display: none;
 	top: 0
 }
 .view_button{
-background-color: black;
-color: white;
-padding: 1vh;
-margin: 0.5vh;
-border-radius: 0.5vh;
-text-transform: capitalize;
-cursor: pointer;
-border:1px solid white;
+	color: white;
+	padding: 1vh;
+	margin: 0.5vh;
+	border-radius: 0.5vh;
+	text-transform: capitalize;
+	cursor: pointer;
+	border:1px solid white;
+	background-repeat:no-repeat;
+	background-size: contain;
+	background-position: center;
+	background-color: black;
+	width: 15vh;
+	height: 15vh;
 }
 .view_button:hover{
 	filter: invert(1);
 }
+.spiral_view_button{
+	background-image: url(img_b/zoom-02.png);
+}
+.week_view_button{
+	background-image: url(img_b/zoom-01.png);
+}
 .week_view .spiral_whole_wrapper_wrapper{
-	z-index: 100;
-	transform:scale(0.3) translateX(-50px) translate(-3vh, 3vh);
-	transform-origin: right top;
-	border: 2px solid black;
-	background-color: rgb(219, 219, 219);
+	cursor: pointer;
+    z-index: 100;
+    transform: scale(0.25) translateX(-50px) translate(-3vh, 3vh);
+    transform-origin: right top;
+    border: 2px solid black;
+    background-color: rgb(219, 219, 219);
+    height: 130vh;
+    z-index: 100000000000;
 }
 .spiral_whole_wrapper_wrapper>.popups_tab,
 .week_whole_wrapper_wrapper>.popups_tab{
@@ -410,7 +468,8 @@ border:1px solid white;
 	display: block;
 }
 .spiral_view .week_whole_wrapper_wrapper{
-	z-index: 100;
+	cursor: pointer;
+	z-index: 100000000000;
 	transform:scale(0.3) translateX(-50px) translate(-3vh, 3vh);
 	transform-origin: right top;
 	border: 2px solid black;
@@ -515,9 +574,55 @@ box-shadow: 0vh 0vh 3vh black;
 .popup_shadow,
 .popup_shadow *{
 	color: transparent;
-	background: black !important;}
-/*.popups_small{
-	width: 10vw;
-	height: 10vw
+	background: black !important;
 }
-*/
+.popups_info{
+	top: 10vh; 
+	width: 22.5vh;
+}
+.popups_icon{
+    width: 15vh;
+    height: 15vh;
+    background-color: rgb(255 191 191);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.popups_icon_clock{
+	top: 20vh;
+	/*background-image: url(img_b/);*/
+}
+.popups_icon_weather{
+	top: 30vh;
+	/*background-image: url(img_b/);*/
+}
+.popups_icon_podcast{
+	top: 40vh;
+	background-image: url(img_b/podcast.png);
+}
+.followcursor{
+	position: fixed;
+	z-index: 100000;
+    position: fixed;
+    font-size: 1.5vh;
+    background: gray;
+    color: white;
+    padding: 0.25vh;
+    padding-left: 0.5vh;
+    padding-right: 0.5vh;
+    border-radius: 0.2vh;
+    pointer-events: none;
+    transition: 0.2s;
+}
+.comingsoon{}
+.next_comingsoon .board{
+	opacity: 0.75;
+}
+.comingsoon .board{
+	opacity: 0.5;
+	background:gray !important;
+}
+.comingsoon .info_popup,
+.next_comingsoon .info_popup  {
+    margin-top: 5vh;
+}
