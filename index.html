@@ -4,7 +4,8 @@
 	<title></title>
 	<link rel="stylesheet" href="style.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 	<style type="text/css">
 		.week_wrapper{
 			display: none;
@@ -21,30 +22,37 @@
 <body>
 	<div class="followcursor">Scroll Down!</div>
 	<script src="jquery.js"></script>
+	<script src="quote_db.js"></script>
 	<script src="script.js"></script>
 	<div class="fake_scroll_wrapper">
 		<div class="fake_scroll">&nbsp;</div>
 	</div>
 	<div class="popupbox"></div>
-	<div class="lastpage_popupbox"><div class="popups_tab"></div></div>
-	<div class="spiral_whole_wrapper_wrapper">
-		<div class="popups_tab"><div class="close"></div></div>
-		<div class="spiral_whole_wrapper">
-			<div class="camera_wrapper"><img src="img/eyes.png" class="camera_center"><img class="camera_view" src="img/view.png"></div>
+	<div class="lastpage_popupbox"></div>
+	<div class="spiral_frame">
+		<div class="black"></div>
+		<div class="spiral_whole_wrapper_wrapper">
+			<div class="spiral_whole_wrapper">
+				<div class="camera_wrapper"><img src="img/eyes-01.png" class="camera_center"><img class="camera_view" src="img/view.png"></div>
+			</div>
 		</div>
 	</div>
 		<div class="week_lastpage_arrowl"></div>
 		<div class="week_lastpage_arrowr"></div>
-	<div class="week_whole_wrapper_wrapper">
-		<div class="popups_tab"><div class="close"></div></div>
-		<div class="week_whole_wrapper">
+
+	<div class="week_frame">
+		<div class="black"></div>
+		<div class="week_whole_wrapper_wrapper">
+			<div class="week_whole_wrapper">
+			</div>
 		</div>
-	</div>
-	<div class="switch">
-		<div class="spiral_view_button view_button">spiral_view</div>
-		<div class="week_view_button view_button">week_view</div>
 	</div>
 	<div class="markcontent_wrapper"></div>
 
+	<img class="switch" src="img/switch.png">
+	<span class="note_b sans-b">Original Text & Info</span>
+	<div class="note">
+		<img class="close" src="close.png">
+	</div>
 </body>
 </html>
