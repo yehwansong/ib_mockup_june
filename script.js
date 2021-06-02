@@ -9,7 +9,7 @@ if(isMobile){$('body').addClass('mobile')}
 	var test = -4
 	var current_scroll
 	var currentweek = getWeekNumber(new Date()) - weekoffset + test;
-	console.log(currentweek )
+	
 	var height_unit = 90
 	var rotatetime_timeout
 	// var last_height = 20
@@ -49,10 +49,10 @@ if(isMobile){$('body').addClass('mobile')}
 		ismobile = true
 	}
 	if(ismobile){wrapper_translatez = 50;
-		console.log('1')}
+		}
 	var translatez = 28
 	if(ismobile){translatez = 50;
-		console.log('2')}
+		}
 	var number_of_board = 20
 	var week_lastpage = 0
 
@@ -120,7 +120,7 @@ function get_data_array() {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             data_array = JSON.parse(this.responseText).values
-            console.log(data_array)
+            
             wholeweek_length = (data_array.length-1)
             spiral_unit = (w)/(wholeweek_length*2 + center_width_r*2)
 
@@ -381,14 +381,14 @@ function get_data_array() {
 					// --------------------------------------------마지막부 original--------------------------------------------
 
             	}else{
-            				console.log('_______________2')
+            				
             		$('.week_lastpage_arrowl').hide()
 					$('.week_lastpage_arrowr').hide()
 					$('.lastpage_popupbox').hide()
             		$('.week_whole_wrapper').removeClass('week_whole_wrapper_animate')
 
 	            	if(scrolldirection === 'down' && transition_unit!==10 && transition_unit!==0){
-            				console.log('_______________3')
+            				
 	            		$('.weekwrapper_'+ Math.floor(k-2)).css({transform : 'translateY('+((k-2)*translatey)+'vh) translateY('+map_range(transition_unit, 0, 10, -50, -20 )+'vh) scaleX('+map_range(transition_unit, 0, 10, 5.0, 7.0)+') scaleZ('+map_range(transition_unit, 0, 10, 5.0, 7.0)+')'})
 	            		$('.weekwrapper_'+ Math.floor(k-1)).css({transform : 'translateY('+((k-1)*translatey)+'vh) translateY('+map_range(transition_unit, 0, 10, -20, -50 )+'vh) scaleX('+map_range(transition_unit, 0, 10, 3, 5.0)+') scaleZ('+map_range(transition_unit, 0, 10, 3, 5.0)+')'})
 	            		
@@ -400,7 +400,7 @@ function get_data_array() {
 
  	             		$('.spiralwrapper_'+ Math.floor(k+1)).css({transform:'translateX(-50%) translateY(-50%)  translateY('+(10-transition_unit)*10+'%)'}) 
 	            	}else if(scrolldirection === 'up' && transition_unit!==10 && transition_unit!==0){
-            				console.log('_______________4')
+            				
 	            		$('.weekwrapper_'+ Math.floor(k-2)).css({transform : 'translateY('+((k-2)*translatey)+'vh) translateY('+map_range(transition_unit, 10, 0, -20  ,-50)+'vh) scaleX('+map_range(transition_unit, 10, 0, 7.0, 5.0)+') scaleZ('+map_range(transition_unit, 10, 0, 7.0, 5.0)+')'})
 	            		$('.weekwrapper_'+ Math.floor(k-1)).css({transform : 'translateY('+((k-1)*translatey)+'vh) translateY('+map_range(transition_unit, 10, 0, -50, -20 )+'vh) scaleX('+map_range(transition_unit, 10, 0, 5.0, 3)+') scaleZ('+map_range(transition_unit, 10, 0, 5.0, 3)+')'})
 	            		
@@ -408,16 +408,16 @@ function get_data_array() {
 	            		$('.weekwrapper_'+ Math.floor(k+1)).css({transform : 'translateY('+((k+1)*translatey)+'vh) translateY('+map_range(transition_unit, 10, 0,  -2.5 , -13)+'vh) scaleX('+map_range(transition_unit, 10, 0, 1, .50)+') scaleZ('+map_range(transition_unit, 10, 0, 1, .50)+')'})
 	            		$('.weekwrapper_'+ Math.floor(k+2)).css({transform : 'translateY('+((k+2)*translatey)+'vh) translateY('+map_range(transition_unit, 10, 0, -13, -86)+'vh) scaleX('+map_range(transition_unit, 10, 0, .50, .25)+') scaleZ('+map_range(transition_unit, 10, 0, .50, .25)+')'})
 	            		$('.weekwrapper_'+ Math.floor(k+3)).css({transform : 'translateY('+((k+3)*translatey)+'vh) translateY('+map_range(transition_unit, 10, 0, -86, -156)+'vh) scaleX('+map_range(transition_unit, 10, 0, .50, .2)+') scaleZ('+map_range(transition_unit, 10, 0, .50, .2)+')'})
-console.log('.spiralwrapper_'+ Math.floor(k+1))
-console.log($('.spiralwrapper').length)
+
+
  	             		$('.spiralwrapper_'+ Math.floor(k+1)).css({transform:'translateX(-50%) translateY(-50%)  translateY('+(10-transition_unit)*10+'%)'})
 	            	}else{
-            				console.log('_______________5')
-            				console.log(';sldkfjdlks')
+            				
+            				
             			if(current_scroll !== k){
 				    		currentweek = k
             				current_scroll = k
-            				console.log($('.weekwrapper_'+ Math.floor(k+1)))
+            				
             				$('.weekwarpper_prev2').removeClass('weekwarpper_prev2')
 							$('.weekwarpper_prev1').removeClass('weekwarpper_prev1')
 							$('.weekwarpper_current').removeClass('weekwarpper_current')
@@ -461,7 +461,7 @@ console.log($('.spiralwrapper').length)
 		            		})
             			}
 	            	}
-	            	console.log(-1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition))
+	            	
             		if(scrolldirection === 'down' && transition>0){
 	   					if(w/h>1/1){
 							$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})
@@ -526,8 +526,8 @@ console.log($('.spiralwrapper').length)
 					var k = $(this).parent().attr('class').split('spiralwrapper_')[1].split(' ')[0]
 					var b = (week_array.length-k)*(50/(week_array.length+1))
 					// console.log(b)
-						console.log(b)
-						console.log(get_width(b,number_of_board))
+						
+						
 					$('.spiral.board').css({'width':get_width(b,number_of_board)+'vw'})
 					$('.spiral.board').css({'transform':'translateX(-50%) rotateY('+((-360/number_of_board)*index)+'deg) translateZ(-'+b+'vw)'})
 				})
@@ -655,7 +655,7 @@ console.log($('.spiralwrapper').length)
 				window.location.hash = 'week';
 			})
             $('.spiral_frame').click(function(){
-            	console.log('s;ldkfj')
+            
 				if(window.location.hash && window.location.hash.split('#')[1] === 'week') {
 					$('.week_whole_wrapper_wrapper').addClass('animate transition')
 					$('.spiral_whole_wrapper_wrapper').addClass('animate transition')
@@ -672,7 +672,7 @@ console.log($('.spiralwrapper').length)
 				}
             })
 			$('.week_frame').click(function(){
-				console.log('s;ldkfj')
+			
 				if(window.location.hash && window.location.hash.split('#')[1] === 'spiral') {
 					$('.week_whole_wrapper_wrapper').addClass('animate transition')
 					$('.spiral_whole_wrapper_wrapper').addClass('animate transition')
