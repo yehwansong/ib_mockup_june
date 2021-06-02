@@ -938,6 +938,9 @@ transform: translateX(-50%) translateZ(10px);
 	transform: rotate(90deg) scale(1.75);
 	height: 100%;
 }
+.mobile *,
+.mobile{
+  touch-action: manipulation;}
    /* width: 140vw;
     height: 100vw;
     left: auto;
