@@ -5,7 +5,7 @@ var isMobile = false;
 if(isMobile){$('body').addClass('mobile')}
 	var data_array
 	var icon_array
-	var weekoffset = 17
+	var weekoffset = 18
 	var test = -4
 	var current_scroll
 	var currentweek = getWeekNumber(new Date()) - weekoffset + test;
