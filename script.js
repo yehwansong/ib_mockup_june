@@ -64,8 +64,10 @@ if(isMobile){$('body').addClass('mobile')}
 	if(!isMobile){
 		var scrollbarWidth = document.querySelector('.fake_scroll_wrapper').offsetWidth - document.querySelector('.fake_scroll_wrapper').clientWidth;
 		$('head').append('<style type="text/css">\
-			.spiral_frame{width:calc(100vw - '+scrollbarWidth+'px) !important}\
-			.week_frame{width:calc(100vw - '+scrollbarWidth+'px) !important}\
+			.week_frame,.spiral_frame,.week_whole_wrapper_wrapper, .week_frame{\
+				width:calc(100vw - '+scrollbarWidth+'px) !important;\
+				overflow:hidden !important\
+			}\
 			</style>');
 	}
 	var week_array = [
