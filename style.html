@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+@font-face {
+   font-family: hb;
+   src: url('font/HelveticaNeue-Bold.woff')
+}
+
+@font-face {
+   font-family: hh;
+   src: url('font/HelveticaNeue-Heavy.woff')
+}
+
+@font-face {
+   font-family: hhi;
+   src: url('font/HelveticaNeue-HeavyItalic.woff')
+}
+
+@font-face {
+   font-family: hbi;
+   src: url('font/HelveticaNeue-BoldItalic.woff')
+}
+@font-face {
+   font-family: tri;
+   src: url('font/TimesNewRomanPS-ItalicMT.woff')
+}
+@font-face {
+   font-family: tr;
+   src: url('font/TimesNewRomanPSMT.woff')
+}
+*{
+   margin: 0;
+   padding: 0
+}
+body{
+	background-color: black;
+	transform: scale(0.5);
+	transform-origin: left top
+}
+img{
+	height: 70vh;
+	background-color: red;
+	position: relative;
+}
+.text_inner_content{
+	position: absolute;
+}
+.text_inner_content_1{
+    width: 17%;
+    font-family: hb;
+    left: 3vh;
+    top: 0;
+    text-align: left;
+    color: blue;
+    font-size: 5vh;
+    top: 2vh;
+    letter-spacing: -0.15vh;
+    line-height: 1.055;
+}
+.text_inner_content_2 {
+    font-family: hb;
+    left: 25%;
+    top: 0;
+    text-align: center;
+    color: blue;
+    font-size: 9.6vh;
+    top: 2.2vh;
+    letter-spacing: -0.13vh;
+    line-height: 1.0;
+    width: 36%;
+}
+.text_inner_content_3{
+    font-family: tr;
+    left: 0;
+    top: 0;
+    left: 73%;
+    width: 26%;
+    text-align: center;
+    font-size: 6.5vh;
+    color: blue;
+    top: 3.1vh;
+    line-height: 1;
+    letter-spacing: -0.1vh;
+}
+</style>
+</head>
+<body>
+	<script src="jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('body').css({'width':$('img').outerWidth()+'px'})
+		})
+	</script>
+	<img src="img/bg-05.png">
+		<div class="text_inner_content text_inner_content_1">I think ‘action’ in photography is something to do with that sense of freshness: the photo shoot for My Husband in particular felt new and fresh to me. [...] My photographs render everything into reality: they are a way of bringing something back to life. You can talk about photographs in terms of ‘shooting’—to ‘shoot’ with a camera like you would shoot with a gun. However, for me, taking photos is not like shooting something: it’s like being shot. I am shot, and the entire timeline of my existence is resurrected in the photograph. So, I think photography is the revival of eternal time and eternal life; a photograph is not a representation of time that has been killed. In such conditions, that means that I myself am firmly embedded in the photograph.
+		</div>
+		<div class="text_inner_content text_inner_content_2">“Art is a value in itself, creates space and food for thought. And this freedom - apart from economic usability and marketing - is urgently needed.”
+		</div>
+		<div class="text_inner_content text_inner_content_3">“Green<br>Papaya is [...] is a halfway<br>house for ideas, a space to hang out<br>and have real conversations again, a<br>chance to cook and share meals. It is less<br>about art than it is about being artists and<br>being human again—and questioning what that<br>means in our current context."
+		</div>
+</body>
+</html>

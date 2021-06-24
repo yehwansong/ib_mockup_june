@@ -143,7 +143,74 @@ function get_data_array() {
     xhttp.open("GET", "https://sheets.googleapis.com/v4/spreadsheets/1j4pOnmU4NTyM7XoeXHG67Uy7VMfT_bAp4Kt0JxokUag/values/Info?key=AIzaSyAmcp44cOi9-6XM4EqjCjIQLbj_D__1YPE");
     xhttp.send();
 }
-
+var text_content=[
+		'<div class="text_inner_content text_inner_content_1">\
+			<a class="text_inner_content_link_1 text_inner_content_link">Art is the vehicle, the pretext for a conversation and for an exchange of ideas that incorporate the material as well as the personal for its execution.</a>"\
+		</div>\
+		<div class="text_inner_content text_inner_content_2">\
+			<a class="text_inner_content_link_2 text_inner_content_link">LAB: "...I presented Intervention: Indigo, a project that combines procession, performance, dance, music, textile arts, costuming, ritual, improvised interactions with the audience, and protest. It began at the Bushwick police precinct. The work is a call to action to serve and protect—and a protest in response to the violence and murder at the hands of the police of Black people living in this country and all over the world. The point of departure is the color indigo, a dye that is used around the globe and associated with protection, wisdom, and royalty. For example, in Burkina Faso, newborn babies are wrapped in indigo-dyed cloth to protect them. And I do not think it is a coincidence that indigo is the color of police uniforms here in the US, and almost all around the globe. It is a color imbedded with great meaning. [...] </a>\
+		</div>',
+		'<div class="text_inner_content text_inner_content_1">\
+				<span class="text_inner_content_1_1" >I </span>\
+				<span class="text_inner_content_1_2" >should also </span>\
+				<span class="text_inner_content_1_3" >stress that I identify </span>\
+				<span class="text_inner_content_1_4" >more as a collector than </span>\
+				<span class="text_inner_content_1_5" >artist: </span>\
+				<span class="text_inner_content_1_6" >someone, who gathers, compiles, </span>\
+				<span class="text_inner_content_1_7" >arranges, or reorganises relationships between</span>\
+				<span class="text_inner_content_1_8" >things that often already exist in the world. [...]</span>\
+				<span class="text_inner_content_1_9" >I certainly don’t see myself as an artist or ‘researcher’</span>\
+				<span class="text_inner_content_1_10">but a collector: a collector of images, observations</span>\
+				<span class="text_inner_content_1_11">and small encounters. This type of ‘notation’ enfolds to </span>\
+				<span class="text_inner_content_1_12">form an ongoing archive alongside notes, recordings</span>\
+				<span class="text_inner_content_1_13">interviews and  artifacts. The process </span>\
+				<span class="text_inner_content_1_14">is accumulative.(p. 180)</span>\
+		</div>\
+		<div class="text_inner_content text_inner_content_2">\
+			It was the idea<br>\
+			to do something like that because it just doesn\'t exist.\
+		</div>\
+		<div class="text_inner_content text_inner_content_3">\
+			<a class="text_inner_content_link_4 text_inner_content_link">You know in the 90s I made this work called Lingga-Yoni that created problems with the radical groups of Muslims in Indonesia. They misunderstood it – or perhaps they didn’t want to understand. It was based on the ancient Hindu Buddhist philosophy which in a way I inherited from my ancestors. My struggle to connect ancient traditions with science and technology inevitably gets through my artwork. Lately I have gotten closer to Buddhism, but this isn’t about changing religion for me. I see the essence of all religions being basically the same; it is for the good of people of this earth. But of course there are different cultural contexts and different ways of doing it. I don’t make a big deal about it, I’m more interested in the idea of pluralism, respecting the differences.<a>\
+		</div>',
+		'<div class="text_inner_content text_inner_content_1">\
+			[also on the<br>mangrove] It\'s not<br>really about this machine<br>and this thing, here, it\'s<br>about all the conversations<br>we\'ve had. We\'ve been dreaming<br>about other stuff, and we talk about<br>other things we could do<br>together. (1:29-1:42)<a>\
+		</div>\
+		<div class="text_inner_content text_inner_content_2">\
+			<span class="text_inner_content_2_1">DN: What do you hope<br>people will take away [..] from<br>engaging or participating in the<br>improvisational music that\'s happening?</span>\
+			<span class="text_inner_content_2_2">TA: Maybe the most important<br>thing for me is to have the feeling<br>that we shared something we<br>cannot speak about. A moment<br>that is undescribable.</span>\
+		</div>\
+		<div class="text_inner_content text_inner_content_3">\
+			“...a lot of the decisions on how elements are placed and in dialogue with each and with the space came from listening to the material one by one. So, listening to each stone, listening to the rails, and seeing how these elements are transmitting and emitting sound.” (3:14-3:32)\
+		</div>',
+		'<div class="text_inner_content text_inner_content_1">“‘We are not oyster fishermen or citrus growers or lawyers,’ said Schwabe. ‘But we bring people together with different expertise to have discussions across political and environmental horizons.’”\
+		</div>\
+		<div class="text_inner_content text_inner_content_2">“Art needs to dominate the means of production that industry dominates.”<br>(3:40-3:45)\
+		</div>\
+		<div class="text_inner_content text_inner_content_3">“As such, the Library operates as a discursive space, in the knowledge that archives are unstable and incomplete, and that archival gaps are not deficiencies, but can create opportunities for dialogue.”\
+		</div>',
+		'<div class="text_inner_content text_inner_content_1">I think ‘action’ in photography is something to do with that sense of freshness: the photo shoot for My Husband in particular felt new and fresh to me. [...] My photographs render everything into reality: they are a way of bringing something back to life. You can talk about photographs in terms of ‘shooting’—to ‘shoot’ with a camera like you would shoot with a gun. However, for me, taking photos is not like shooting something: it’s like being shot. I am shot, and the entire timeline of my existence is resurrected in the photograph. So, I think photography is the revival of eternal time and eternal life; a photograph is not a representation of time that has been killed. In such conditions, that means that I myself am firmly embedded in the photograph.\
+		</div>\
+		<div class="text_inner_content text_inner_content_2">“Art is a value in itself, creates space and food for thought. And this freedom - apart from economic usability and marketing - is urgently needed.”\
+		</div>\
+		<div class="text_inner_content text_inner_content_3">“Green<br>Papaya is [...] is a halfway<br>house for ideas, a space to hang<br>out and have real conversations <br>again, a chance to cook and share meals. It is<br>less about art than it is about being <br>artists and being human again—and questioning what that<br>means in our current context."\
+		</div>',
+		'5',
+		'6',
+		'7',
+		'8',
+		'9',
+		'10',
+		'11',
+		'12',
+		'13',
+		'14',
+		'15',
+		'16',
+		'17',
+		'18'
+]
+ // 667 : 125
 
 			function create_board(data_array, k, translatez, callback){
             		var number_of_board = week_array.length-k + 2
@@ -160,7 +227,13 @@ function get_data_array() {
 							transform:translateX(-50%) rotateY('+((-360/number_of_board)*i)+'deg) translateZ(-'+translatez+'vw);\
 							background-position:'+ (-1*get_width(translatez,number_of_board)*(i)) +'vw top;\
 							background-size:'+ (number_of_board*100) +'% 100%;\
-							"><div class="week_board_inner"></div></div>')
+							">\
+								<div class="week_board_inner"></div>\
+								<div class="text_inner" style="\
+								margin-left:'+ (-1*get_width(translatez,number_of_board)*(i)) +'vw;\
+								width:'+ (number_of_board*100) +'%;"\
+								><div class="text_inner_wrapper">'+text_content[k]+'</div></div>\
+							</div>')
 						    append_weekinfo(i,k,classname)
 						    append_weekitems(i,k,classname)
 							if(i == number_of_board-1){
@@ -177,6 +250,14 @@ function get_data_array() {
 					            	settingup_lastpage()
 						            setTimeout(function(){hovereffect()},1000)
 						        }
+						        console.log('scaleX('+($('.'+classname).find('.board_info_time_0').find('.text_inner').outerWidth()/$('.'+classname).find('.board_info_time_0').find('.text_inner_wrapper').outerWidth())+')')
+								$('.'+classname).find('.text_inner_wrapper').css({'transform':'scaleX('+($('.'+classname).find('.board_info_time_0').find('.text_inner').outerWidth()/$('.'+classname).find('.board_info_time_0').find('.text_inner_wrapper').outerWidth())+')'})
+								$('.text_inner_content_link').hover(function(){
+									var val = $(this).attr('class').split('text_inner_content_link_')[1].split(' ')[0]
+									$('.text_inner_content_link_'+val).addClass('text_inner_content_link_hovered')
+								}, function(){
+									$('.text_inner_content_link_hovered').removeClass('text_inner_content_link_hovered')
+								})
 							}
 					}
 			}
@@ -227,7 +308,13 @@ function get_data_array() {
 									transform:translateX(-50%) rotateY('+((-360/number_of_board)*i)+'deg) translateZ(-'+translatez+'vw);\
 									background-position:'+ (-1*get_width(translatez,number_of_board)*(i)) +'vw top;\
 									background-size:'+ (get_width(translatez,number_of_board)*number_of_board) +'vw 100%;\
-									"><div class="spiral_board_inner spiral_board_inner_outerwall"></div></div>')
+									">\
+									<div class="spiral_board_inner spiral_board_inner_outerwall"></div>\
+									<div class="text_inner" style="\
+									margin-left:'+ (-1*get_width(translatez,number_of_board)*(i)) +'vw;\
+									width:'+ (number_of_board*100) +'%;"\
+									><div class="text_inner_wrapper">'+text_content[k]+'</div></div>\
+									</div>')
 				            			if(parseInt(week_array[k])<currentweek+2){
 					            			$('.'+classname).find('.spiral_board_inner_outerwall').css({'opacity':1})
 						            	}else{
@@ -239,7 +326,13 @@ function get_data_array() {
 									transform:translateX(-50%) rotateY('+((-360/number_of_board)*i)+'deg) translateZ(-'+translatez+'vw);\
 									background-position:'+ (-1*get_width(translatez,number_of_board)*(i)) +'vw top;\
 									background-size:'+ (get_width(translatez,number_of_board)*number_of_board) +'vw 100%;\
-									"><div class="spiral_board_inner spiral_board_inner_innerwall"></div></div>')
+									">\
+									<div class="spiral_board_inner spiral_board_inner_innerwall"></div>\
+									<div class="text_inner" style="\
+									margin-left:'+ (-1*get_width(translatez,number_of_board)*(i)) +'vw;\
+									width:'+ (number_of_board*100) +'%;"\
+									><div class="text_inner_wrapper">'+text_content[k]+'</div></div>\
+									</div>')
 				            			if(parseInt(week_array[k])<currentweek+2){
 					            			$('.'+classname).find('.spiral_board_inner_outerwall').css({'opacity':1})
 						            	}else{
@@ -607,15 +700,15 @@ function get_data_array() {
             	})
 	        }
             function hovereffect(){
-                        $('.board').mouseenter(function(){
-				            // $(this).parent().find('.board').css({'background-color':'#dddddd'})
-                        	$(this).parent().find('.info_popup').show()
-                        })
+                //         $('.board').mouseenter(function(){
+				            // // $(this).parent().find('.board').css({'background-color':'#dddddd'})
+                //         	$(this).parent().find('.info_popup').show()
+                //         })
                        
-                        $('.board').mouseleave(function(){
-                        	// $(this).parent().find('.board').css({'background-color':'white'})
-                        	$(this).parent().find('.info_popup').hide()
-                        })
+                //         $('.board').mouseleave(function(){
+                //         	// $(this).parent().find('.board').css({'background-color':'white'})
+                //         	$(this).parent().find('.info_popup').hide()
+                //         })
                     
                         $('.spiral').mouseenter(function(){
                         	noscroll = true
