@@ -61,6 +61,13 @@ if(isMobile){$('body').addClass('mobile')}
 
 	var scrolldirection = 'down'
 	var scrolldirection_value = 0
+	if(!isMobile){
+		var scrollbarWidth = document.querySelector('.fake_scroll_wrapper').offsetWidth - document.querySelector('.fake_scroll_wrapper').clientWidth;
+		$('head').append('<style type="text/css">\
+			.spiral_frame{width:calc(100vw - '+scrollbarWidth+'px) !important}\
+			.week_frame{width:calc(100vw - '+scrollbarWidth+'px) !important}\
+			</style>');
+	}
 	var week_array = [
 		'0',
 		'1',
@@ -393,6 +400,7 @@ var text_content=[
 					    scrollpos = $('.fake_scroll_wrapper').scrollTop()/(window.innerHeight/100) * scrollspeed
 					    // if(scrollpos > 350){ scrollpos = 330 }
 					    move_wrapper(false)
+					    console.log(scrollpos)
 	            	}
 
 					$('.camera_wrapper').css({'transform':'rotate('+(pos_to_rot(scrollpos+currentrotation)+90)+'deg)'})
@@ -557,12 +565,12 @@ var text_content=[
 	            	
             		if(scrolldirection === 'down' && transition>0){
 	   					if(w/h>1/1){
-							$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})
+							$('.week_whole_wrapper').css({'transform':' perspective(40vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})
 							week_whole_wrapper_animate_val_1 = -1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)
 							week_whole_wrapper_animate_val_2 = wrapper_translatez
 							
 						}else{
-							$('.week_whole_wrapper').css({'transform':'perspective(41.5vh) scale(0.55) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})	
+							$('.week_whole_wrapper').css({'transform':' perspective(41.5vh) scale(0.55) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})	
 							week_whole_wrapper_animate_val_1 = -1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)
 							week_whole_wrapper_animate_val_2 = wrapper_translatez
 							

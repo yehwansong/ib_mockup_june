@@ -457,7 +457,8 @@ body{
     top: 0;
     text-align: right;
     width: 22%;
-    background: linear-gradient(to right, transparent, white 15%, white);
+    /*background: linear-gradient(to right, transparent, white 15%, white);*/
+    background:  white;
     padding: 4vh;
     height: 100vh;
     display: block;
@@ -890,7 +891,7 @@ body{
     position: absolute;
     left: 0;
     /*background-color: red;*/
-    top: 0
+    top: 0;transform-style: preserve-3d;
 }
 .weekwarpper_prev2 .week_board_inner{height:75%}
 .weekwarpper_next3 .week_board_inner{height:50%}
@@ -938,7 +939,7 @@ body{
     transform: translateX(-50%);
     left: 50%;
     font-weight: 900;
-    filter: drop-shadow(0vh 0vh 0.75vh black);
+    /*filter: drop-shadow(0vh 0vh 0.75vh black);*/
     line-height: 1;
 }
 
@@ -1081,7 +1082,7 @@ display: none;
     left: 0;
     top: auto;
     /*z-index: 10000000000;*/
-    width: 110vw;
+    width: 100vw;
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
