@@ -36,6 +36,11 @@
    font-family: tr;
    src: url('font/TimesNewRomanPSMT.woff')
 }
+@font-face {
+   font-family: fut;
+   src: url('font/Futura-ExtraBold.woff')
+}
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 html,body{
 	width: 100vw;
 	height: 100%;
@@ -102,7 +107,7 @@ body{
 	/*pointer-events: all;*/
 	border-top: 1px solid white;
 	border-left: 1px solid white;
-	background-color:rgb(152 200 187);
+	background-color:rgb(134 200 188);
 	background-size: auto 100%;
 	background-repeat: no-repeat;
 	transform-style: preserve-3d;
@@ -169,6 +174,29 @@ body{
     background-image: url(img/gal/img4.jpg) !important;
     background-size: cover;
 }
+.spiralwrapper_upper{
+    top:0 !important;
+}
+/*
+.spiralwrapper_upper.spiralwrapper_0 { top: 30%!important;}
+.spiralwrapper_upper.spiralwrapper_1 { top: 32%!important;}
+.spiralwrapper_upper.spiralwrapper_2 { top: 34%!important;}
+.spiralwrapper_upper.spiralwrapper_3 { top: 36%!important;}
+.spiralwrapper_upper.spiralwrapper_4 { top: 38%!important;}
+.spiralwrapper_upper.spiralwrapper_5 { top: 40%!important;}
+.spiralwrapper_upper.spiralwrapper_6 { top: 42%!important;}
+.spiralwrapper_upper.spiralwrapper_7 { top: 44% !important;}
+.spiralwrapper_upper.spiralwrapper_8 { top: 46% !important;}
+.spiralwrapper_upper.spiralwrapper_9 { top: 48% !important;}
+.spiralwrapper_upper.spiralwrapper_10{ top: 50% !important;}
+.spiralwrapper_upper.spiralwrapper_11{ top: 52% !important;}
+.spiralwrapper_upper.spiralwrapper_12{ top: 54% !important;}
+.spiralwrapper_upper.spiralwrapper_13{ top: 56% !important;}
+.spiralwrapper_upper.spiralwrapper_14{ top: 58% !important;}
+.spiralwrapper_upper.spiralwrapper_15{ top: 60% !important;}
+.spiralwrapper_upper.spiralwrapper_16{ top: 62% !important;}
+.spiralwrapper_upper.spiralwrapper_17{ top: 64% !important;}
+.spiralwrapper_upper.spiralwrapper_18{ top: 66% !important;}*/
 
  /*.weekwrapper_0 .board, .spiralwrapper_0 .board{ background-image: url(img/bg-01.png);}
  .weekwrapper_1 .board, .spiralwrapper_1 .board{ background-image: url(img/bg-02.png);}
@@ -300,7 +328,8 @@ body{
     overflow: hidden;
 }
 .week.board{
-	height: 90vh
+	height: 70vh;
+    transition: transform 0.5s
 }
 
 .weekwrapper .text_inner_wrapper,
@@ -353,7 +382,7 @@ body{
 .weekwrapper_0 .text_inner_content_2,
 .spiralwrapper_0 .text_inner_content_2{
     top: 0;
-    width: 40%;
+    width: 30%;
     position: absolute;
     left: 50%;
     padding: 3vh;
@@ -364,9 +393,31 @@ body{
 .weekwrapper_0 .text_inner_content_2 *,
 .spiralwrapper_0 .text_inner_content_2 *{
     font-family: hb;
-    font-size: 4.7vh;
+    font-size: 4.0vh;
     line-height: 1.2;
     letter-spacing: -0.025vh;
+}
+
+.weekwrapper_0 .text_inner_content_2,
+.spiralwrapper_0 .text_inner_content_2,
+.weekwrapper_0 .text_inner_content_2 *,
+.spiralwrapper_0 .text_inner_content_2 *{
+    font-family: hb;
+    font-size: 4.0vh;
+    line-height: 1.2;
+    letter-spacing: -0.025vh;
+}
+.weekwrapper_0 .text_inner_content_3,
+.spiralwrapper_0 .text_inner_content_3{
+    top: 0;
+    width: 20%;
+    position: absolute;
+    left: 80%;
+    background-image: url(image/img1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%
 }
 
 
@@ -455,14 +506,12 @@ body{
     position: absolute;
     left: 75%;
     top: 0;
-    text-align: right;
     width: 22%;
-    /*background: linear-gradient(to right, transparent, white 15%, white);*/
-    background:  white;
-    padding: 4vh;
-    height: 100vh;
-    display: block;
-    padding-right: 6vh;
+    background-image: url(image/img2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%
 }
 .weekwrapper_1 .text_inner_content_3,
 .spiralwrapper_1 .text_inner_content_3,
@@ -490,6 +539,11 @@ body{
     transform-origin: left;
     transform: scaleX(.8);
     border: 0.35vh solid white;
+    background-image: url(image/img3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%
 }
 .weekwrapper_2 .text_inner_content_1,
 .spiralwrapper_2 .text_inner_content_1,
@@ -627,6 +681,11 @@ body{
     top: 3.1vh;
     transform-origin: top;
     transform: scaleY(1.05);
+    background-image: url(image/img4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%
 }
 .weekwrapper_3 .text_inner_content_3,
 .spiralwrapper_3 .text_inner_content_3,
@@ -750,16 +809,19 @@ body{
 
 
 .spiral_whole_wrapper{
-
+    
     transform-style: preserve-3d;
     width: 100vw;
     height: 100vw;
     left: 0;
     top: 50%;
     position: absolute;
-    transform:scale(1) translateY(-47.5%) rotateX(-27deg) rotateY(-120deg);
+    transform: scale(1) translateY(0%) rotateX(
+-27deg
+) rotateY(
+-120deg
+);
     transform-origin: top;
-    z-index: 10;
 }
 .week_view .spiral_whole_wrapper{
     transform: scale(1) translateY(-51vw) rotateX(-27deg) rotateY(180deg);
@@ -779,13 +841,17 @@ body{
 .spiral_view .week_frame:hover{
     box-shadow: 0vh 0vh 0vh 2vh #00ffb5;
 }
+.spiral_whole_wrapper_wrapper{
+    transform: scale(1) translateY(0);
+    top: -10vh;
+    transition: transform 3s;
+}
 .spiral_whole_wrapper_wrapper,
 .spiral_frame{
     width: 100vw;
     height: 100vh;
     position: fixed;
     left: 0;
-    top: 0;
 }
 .spiral_frame{
 	overflow: hidden;
@@ -1051,7 +1117,10 @@ display: none;
 .spiral_view .week_frame,
 .spiral_view .week_whole_wrapper_wrapper{
     width: 100vw;
-    height: 70vw;
+    height: 80vw;
+}
+.spiral_whole_wrapper_wrapper{
+    top: 50%
 }
 .spiral_whole_wrapper_wrapper
 .spiralwrapper{
@@ -1116,8 +1185,60 @@ text-decoration: underline;
 }
 .content{display: none;}
 
+.intervention_wrapper{
+    position: fixed;
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: none;
+    animation: bg_ani 2s infinite;
+    overflow-y: scroll;
+    pointer-events: auto;
+    overflow-x: hidden;
+}
+.intervention {
+    
+    width: 100vw;
+    height: auto;
+    position: absolute;
+    text-align: justify;
+    left: 0;
+    margin-top: 10vh;
+}
+.intervention span{
+    width: 100vw;
+    height: auto;
+    /* position: absolute; */
+    left: 0;
+    top: 0;
+    font-size: 10vh;
+    text-align: justify;
+    font-family: 'space mono';
+    line-height: 1;
+    text-transform: uppercase;
+}
+.intervention>div{
+    text-align: center;
+}
+.intervention_close{
+    position: absolute;
+    width: 10vh;
+    pointer-events: all !important;
+    transform: scale(0.8);
+    right: 0;
+}
+.intervention_close:hover{
+    filter: invert(1);
+}
 
-
+@keyframes bg_ani {
+   0% {background-color: rgb(232, 156, 174);}
+  25% {background-color: rgb(215, 169, 227);}
+  50% {background-color: rgb(143, 198, 232);}
+  75% {background-color: rgb(210, 207, 205);}
+  100% {background-color: rgb(232, 156, 174);}
+}
 
 .popups,
 .popups *{
@@ -1129,7 +1250,6 @@ text-decoration: underline;
 }
 .popups{
 transform: translateX(-50%) translateZ(10vw);
-background: rgb(1, 255, 172);
 opacity: 1;
 left: 50%;
 position: absolute;
@@ -1138,6 +1258,7 @@ background-repeat: no-repeat;
 background-position: center;
 padding: 0.5vh;
 padding-top: 3vh;
+    animation: bg_ani 2s infinite;
 }
 .popups_tab{
 	width: 100%;
@@ -1171,9 +1292,12 @@ box-shadow: 0vh 0vh 3vh black;
 	color: transparent;
 	background: black !important;
 }
-.popups_info{
-	top: 10vh; 
-	width: 22.5vh;
+.popups_info {
+    top: 0vh;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    opacity: 0.75;
 }
 .popups_icon{
     width: 15vh;

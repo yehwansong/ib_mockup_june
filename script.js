@@ -6,12 +6,13 @@ if(isMobile){$('body').addClass('mobile')}
 	var data_array
 	var icon_array
 	var weekoffset = 18
-	var test = -4
+	var test = -14
 	var current_scroll
 	var currentweek = getWeekNumber(new Date()) - weekoffset + test;
-	
+	var infopopup_array = []
 	var height_unit = 90
 	var rotatetime_timeout
+	var intervention_on = false
 	// var last_height = 20
 	var translatey = 70
 	var week_whole_wrapper_animate_val_1 = 0
@@ -70,27 +71,7 @@ if(isMobile){$('body').addClass('mobile')}
 			}\
 			</style>');
 	}
-	var week_array = [
-		'0',
-		'1',
-		'2',
-		'3',
-		'4',
-		'5',
-		'6',
-		'7',
-		'8',
-		'9',
-		'10',
-		'11',
-		'12',
-		'13',
-		'14',
-		'15',
-		'16',
-		'17',
-		'18'
-	]
+	var week_array = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18']
 
 if(window.location.hash && window.location.hash.split('#')[1] === 'spiral') {
 	$('body').addClass('spiral_view')
@@ -100,9 +81,21 @@ if(window.location.hash && window.location.hash.split('#')[1] === 'spiral') {
 	$('body').addClass('spiral_view hidden')
 } else if(window.location.hash && window.location.hash.split('#')[1] === 'weekhidden'){
 	$('body').addClass('week_view hidden')
-} else{
-	$('body').addClass('spiral_view')
-	window.location.hash = 'spiral';
+}else{
+	// 	$('.week_frame').css({'opacity':0})
+	// 	setTimeout(function(){
+	// 	$('.spiral_whole_wrapper_wrapper_init').removeClass('spiral_whole_wrapper_wrapper_init')
+	// 	setTimeout(function(){
+	// 		$('.week_frame').css({'opacity':1})
+	// 		$('body').addClass('week_view')
+	// 		window.location.hash = 'week';
+	// 	},3000)
+	// },1000)
+	$('body').addClass('week_view')
+	window.location.hash = 'week';
+	// setTimeout(function(){
+	// 	$('.week_frame').show()
+	// })
 }
 setTimeout(function(){
 // switch_view()
@@ -115,6 +108,9 @@ function getWeekNumber(d) {
     return weekNo
 }
 
+
+
+// 1
 get_data_array()
 function get_data_array() {
     var xhttp = new XMLHttpRequest();
@@ -129,6 +125,7 @@ function get_data_array() {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             data_array = JSON.parse(this.responseText).values
+            console.log(data_array)
             
             wholeweek_length = (data_array.length-1)
             spiral_unit = (w)/(wholeweek_length*2 + center_width_r*2)
@@ -154,10 +151,13 @@ function get_data_array() {
 }
 var text_content=[
 		'<div class="text_inner_content text_inner_content_1">\
-			<a target="_blank" href="https://www.google.com/" class="text_inner_content_link_1 text_inner_content_link">Art is the vehicle, the pretext for a conversation and for an exchange of ideas that incorporate the material as well as the personal for its execution.</a>"\
+			<div class="text_inner_content_link_1">Art is the vehicle, the pretext for a conversation and for an exchange of ideas that incorporate the material as well as the personal for its execution.</div>"\
 		</div>\
 		<div class="text_inner_content text_inner_content_2">\
-			<a target="_blank" href="https://www.google.com/" class="text_inner_content_link_2 text_inner_content_link">LAB: "...I presented Intervention: Indigo, a project that combines procession, performance, dance, music, textile arts, costuming, ritual, improvised interactions with the audience, and protest. It began at the Bushwick police precinct. The work is a call to action to serve and protect—and a protest in response to the violence and murder at the hands of the police of Black people living in this country and all over the world. The point of departure is the color indigo, a dye that is used around the globe and associated with protection, wisdom, and royalty. For example, in Burkina Faso, newborn babies are wrapped in indigo-dyed cloth to protect them. And I do not think it is a coincidence that indigo is the color of police uniforms here in the US, and almost all around the globe. It is a color imbedded with great meaning. [...] </a>\
+			<div class="text_inner_content_link_2">LAB: "...I presented Intervention: Indigo, a project that combines procession, performance, dance, music, textile arts, costuming, ritual, improvised interactions with the audience, and protest. It began at the Bushwick police precinct. The work is a call to action to serve and protect—and a protest in response to the violence and murder at the hands of the police of Black people living in this country and all over the world. The point of departure is the color indigo, a dye that is used around the globe and associated with protection, wisdom, and royalty. For example, in Burkina Faso, newborn babies are wrapped in indigo-dyed cloth to protect them. And I do not think it is a coincidence that indigo is the color of police uniforms here in the US, and almost all around the globe. It is a color imbedded with great meaning. [...] </div>\
+		</div>\
+		<div class="text_inner_content text_inner_content_3">\
+		alsdkfjalskdfj\
 		</div>',
 		'<div class="text_inner_content text_inner_content_1">\
 				<span class="text_inner_content_1_1" >I </span>\
@@ -180,10 +180,8 @@ var text_content=[
 			to do something like that because it just doesn\'t exist.\
 		</div>\
 		<div class="text_inner_content text_inner_content_3">\
-			<a target="_blank" href="https://www.google.com/" class="text_inner_content_link_4 text_inner_content_link">You know in the 90s I made this work called Lingga-Yoni that created problems with the radical groups of Muslims in Indonesia. They misunderstood it – or perhaps they didn’t want to understand. It was based on the ancient Hindu Buddhist philosophy which in a way I inherited from my ancestors. My struggle to connect ancient traditions with science and technology inevitably gets through my artwork. Lately I have gotten closer to Buddhism, but this isn’t about changing religion for me. I see the essence of all religions being basically the same; it is for the good of people of this earth. But of course there are different cultural contexts and different ways of doing it. I don’t make a big deal about it, I’m more interested in the idea of pluralism, respecting the differences.<a>\
 		</div>',
 		'<div class="text_inner_content text_inner_content_1">\
-			[also on the<br>mangrove] It\'s not<br>really about this machine<br>and this thing, here, it\'s<br>about all the conversations<br>we\'ve had. We\'ve been dreaming<br>about other stuff, and we talk about<br>other things we could do<br>together. (1:29-1:42)<a>\
 		</div>\
 		<div class="text_inner_content text_inner_content_2">\
 			<span class="text_inner_content_2_1">DN: What do you hope<br>people will take away [..] from<br>engaging or participating in the<br>improvisational music that\'s happening?</span>\
@@ -196,7 +194,7 @@ var text_content=[
 		</div>\
 		<div class="text_inner_content text_inner_content_2">“Art needs to dominate the means of production that industry dominates.”<br>(3:40-3:45)\
 		</div>\
-		<div class="text_inner_content text_inner_content_3">“As such, the Library operates as a discursive space, in the knowledge that archives are unstable and incomplete, and that archival gaps are not deficiencies, but can create opportunities for dialogue.”\
+		<div class="text_inner_content text_inner_content_3">\
 		</div>',
 		'<div class="text_inner_content text_inner_content_1">I think ‘action’ in photography is something to do with that sense of freshness: the photo shoot for My Husband in particular felt new and fresh to me. [...] My photographs render everything into reality: they are a way of bringing something back to life. You can talk about photographs in terms of ‘shooting’—to ‘shoot’ with a camera like you would shoot with a gun. However, for me, taking photos is not like shooting something: it’s like being shot. I am shot, and the entire timeline of my existence is resurrected in the photograph. So, I think photography is the revival of eternal time and eternal life; a photograph is not a representation of time that has been killed. In such conditions, that means that I myself am firmly embedded in the photograph.\
 		</div>\
@@ -221,6 +219,7 @@ var text_content=[
 ]
  // 667 : 125
 
+// 2
 			function create_board(data_array, k, translatez, callback){
             		var number_of_board = week_array.length-k + 2
             		var classname = 'weekwrapper_'+week_array[k]
@@ -231,7 +230,7 @@ var text_content=[
 						></div>')
 
             		for (var i = 0; i < number_of_board; i++) {
-						$('.'+classname).append('<div class="week board board_info_time_'+i+'" style="\
+						$('.'+classname).append('<div class="week board board_info_time_'+i+' rotatey_'+Math.floor((-360/number_of_board)*i)+'" style="\
 							width:'+(get_width(translatez,number_of_board))+'vw;\
 							transform:translateX(-50%) rotateY('+((-360/number_of_board)*i)+'deg) translateZ(-'+translatez+'vw);\
 							background-position:'+ (-1*get_width(translatez,number_of_board)*(i)) +'vw top;\
@@ -270,28 +269,7 @@ var text_content=[
 							}
 					}
 			}
-			var spiral_margintop_array = [
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0.1,
-			0.4,
-			0.9,
-			1.6,
-			2.5,
-			3.6,
-			4.9,
-			6.4+1,
-			8.1+2,
-			10+4,
-			12.1+6,
-			14.4+6
-
-			]
+			var spiral_margintop_array = [0,0,0,0,0,0,0,0.1,0.4,0.9,1.6,2.5,3.6,4.9,6.4+1,8.1+2,10+4,12.1+6,14.4+6]
             function create_spiral(data_array, k, translatez, callback){
             		var number_of_board = week_array.length-k + 2
             		var classname = 'spiralwrapper_' + week_array[k]
@@ -299,14 +277,18 @@ var text_content=[
 	            		$('.spiral_whole_wrapper').append('\
 							<div class="spiralwrapper wrapper_info_month_' + data_array[k+1][0] + '_week_' + data_array[k+1][1] + ' '+classname+'" \
 								style="transform:translateX(-50%) translateY(-50%);\
-								margin-top:'+spiral_margintop_array[k]+'vh"\
+								margin-top:'+spiral_margintop_array[0]+'vh"\
 							></div>')
+	            		$('.'+classname).addClass('spiralwrapper_upper')
 	            	}else{
+			           	var value = parseInt(week_array[k])-(currentweek+1)
 	            		$('.spiral_whole_wrapper').append('\
 							<div class="spiralwrapper wrapper_info_month_' + data_array[k+1][0] + '_week_' + data_array[k+1][1] + ' '+classname+'" \
-								style="transform:translateX(-50%) translateY(-50%)  translateY(100%);\
-								margin-top:'+spiral_margintop_array[k]+'vh"\
+								style="transform:translateX(-50%) translateY(-50%) translateY(100%) scaleY('+(1+value/10)+');\
+								margin-top:'+spiral_margintop_array[0]+'vh"\
 							></div>')
+	            		$('.'+classname).addClass('spiralwrapper_lower')
+			           	$('.'+classname).css({'top':(value*1)+'vw'})
 	            	}
 
 
@@ -360,14 +342,29 @@ var text_content=[
             function set_spiral_position(){
             	$('.camera_view').css({'height':(week_array.length - currentweek + center_width_r)*spiral_unit +'px'})
             }
+// 3
             function append_weekinfo(selectedboard,selectedweek,selectedclass){
 	        		if(parseInt(data_array[selectedweek+1][selectedboard+2]) !== 0){
 	        				$('.'+selectedclass+' .board_info_time_'+selectedboard).append('<div class="popups popups_info">'+data_array[selectedweek+1][selectedboard+2]+'</div>')
-	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').addClass('popup_original').prepend('<div class="popups_tab"><div class="close"></div></div>')
-	        				$('.'+selectedclass+' .board_info_time_'+selectedboard+' .popups').clone().removeClass('popup_original').addClass('popup_shadow').insertBefore($('.'+selectedclass+' .board_info_time_'+selectedboard+' .popup_original'))
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard).addClass('popup_parent')
+	        				var value = $('.'+selectedclass+' .board_info_time_'+selectedboard).attr('class').split('rotatey_')[1].split(' ')[0]
+	        				$('.'+selectedclass+' .board_info_time_'+selectedboard).css({'transform':'translateX(-50%) rotateY('+value+'deg) translateZ(-24vw)'})
+	        				// $('.'+selectedclass+' .board_info_time_'+selectedboard).attr('class').split('_')
+	        				// $('.'+selectedclass+' .board_info_time_'+selectedboard).css({'transform':})
 	        		}
             }
 
+function removeItemAll(arr, value) {
+  var i = 0;
+  while (i < arr.length) {
+    if (arr[i] === value) {
+      arr.splice(i, 1);
+    } else {
+      ++i;
+    }
+  }
+  return arr;
+}
             function append_weekitems(selectedboard,selectedweek,selectedclass){
             	if(typeof icon_array == 'undefined'){
             		setTimeout(function(){append_weekitems(selectedboard,selectedweek,selectedclass)},500)
@@ -390,30 +387,107 @@ var text_content=[
             	}
             }
 
-
+// 4
             function week_scroll(){
 	            $('.fake_scroll_wrapper').on('scroll', function() {
-							$('.transition').removeClass('transition')
+	            	// console.log(-1*Math.floor(pos_to_rot(scrollpos+currentrotation))%360)
+	            	// console.log(infopopup_array)
+			            	for (var i = infopopup_array.length - 1; i >= 0; i--) {
+			            		if(-1*Math.floor(pos_to_rot(scrollpos+currentrotation))%360 > (parseInt(infopopup_array[i]) - 5)&&
+			            			-1*Math.floor(pos_to_rot(scrollpos+currentrotation))%360 < (parseInt(infopopup_array[i]) + 5)){
+			            			var value = infopopup_array[i]
+			            			intervention($('.weekwarpper_current').find('.rotatey_'+value ).find('.popups'),value)
+									intervention_on = true
+									scrollpos = scrollpos+currentrotation
+			            			$('.weekwarpper_current').find('.rotatey_'+value).css({'transform':'translateX(-50%) rotateY('+value+'deg) translateZ(15vw)'})
 
-	            	if(scrollinit){
+			            			removeItemAll(infopopup_array, infopopup_array[i])
+			            		}
+			            	}
+					$('.transition').removeClass('transition')
+
+	            	if(scrollinit||intervention_on){
 	            		scrollinit = false
 	            	}else{
 	            		$('.followcursor').css({'opacity':0})
 					    scrollpos = $('.fake_scroll_wrapper').scrollTop()/(window.innerHeight/100) * scrollspeed
 					    // if(scrollpos > 350){ scrollpos = 330 }
 					    move_wrapper(false)
-					    console.log(scrollpos)
+					    // console.log(scrollpos)
 	            	}
 
 					$('.camera_wrapper').css({'transform':'rotate('+(pos_to_rot(scrollpos+currentrotation)+90)+'deg)'})
 					if(pos_to_rot(scrollpos+currentrotation)%360 < 180){
-						$('.camera_wrapper').css({'margin-top':-0.5*spiral_unit + 'px'})
+						// $('.camera_wrapper').css({'margin-top':-0.5*spiral_unit + 'px'})
             			$('.camera_view').css({'height':(wholeweek_length - currentweek + center_width_r)*spiral_unit+0.5*spiral_unit  +'px'})
 					}else{
-						$('.camera_wrapper').css({'margin-top':'0px'})
+						// $('.camera_wrapper').css({'margin-top':'0px'})
             			$('.camera_view').css({'height':(wholeweek_length - currentweek + center_width_r)*spiral_unit +'px'})
 					}
 				});
+            }
+            function get_intervention_width(i,spanwidth,text_array){
+            				$('.line_'+(i+1)).find('.textspan').each(function(index){
+            					spanwidth = spanwidth + $(this).outerWidth()
+            					console.log(index)
+            					if(index == $('.line_'+(i+1)).find('.textspan').length-1){
+            						if(spanwidth == 0){
+            							setTimeout(function(){get_intervention_width(i,spanwidth,text_array)},1000)
+            						}else{
+			            				fontsize = w / spanwidth *10 
+			            				// $('.line_'+(i+1)).find('span').attr('style', 'font-size:'+fontsize+'vw !important');
+					            		if(i==(text_array.length-1)){
+					            		}
+            						}
+            					}
+            				})
+            }
+            function intervention(content,degree){
+             	$('.intervention').empty()
+				$('.intervention_wrapper').show()
+				content.find('iframe').each(function(index){
+					$('.intervention').append(this)
+					if(index = content.find('iframe').length-1){
+						content.find('iframe').remove()
+						// $('.intervention').append(content.html())
+					}
+				})
+			    var text = content.html()
+				// if()
+            		var text_array = text.split(' ')
+            		for (var j = 0; j < text_array.length; j++) {
+            			if(j>0){
+            				$('.intervention').append('<span class="textspan textspan_'+j+'"> '+text_array[j]+'</span>')
+            			}else{
+            				$('.intervention').append('<span class="textspan textspan_'+j+'">'+text_array[j]+'</span>')
+            			}
+            			if(j == text_array.length-1){
+			            	setTimeout(function(){
+		        				text_animation(0)
+		        				$('.textspan').hide()
+		    					$('.intervention_hide').hide()
+						   		$('.intervention_wrapper').css({'opacity':1})
+			            	},500)
+            			}
+            		}
+            	$('.intervention_close').click(function(){
+            				$('.weekwarpper_current').find('.rotatey_'+degree).css({'transform':'translateX(-50%) rotateY('+degree+'deg) translateZ(-24vw)'})
+							intervention_on = false
+	            			$('.textspan').hide()
+				    		$('.intervention_wrapper').hide()
+						   	$('.intervention_wrapper').css({'opacity':0})
+			            			setTimeout(function(){
+			            				infopopup_array.push(value)
+			            				console.log(infopopup_array)
+			            			},20000)
+            				$('.intervention_hide').show()
+            	})
+            }
+            function text_animation(spancounter_ani){
+            	$('.textspan_'+spancounter_ani).show()
+            	setTimeout(function(){
+            		text_animation(spancounter_ani+1)
+            	},500)
             }
             function rotate_time(init){
             	currentrotation = currentrotation + 360/(24*60*7)
@@ -422,9 +496,9 @@ var text_content=[
 				}
 				$('.camera_wrapper').css({'transform':'rotate('+(pos_to_rot(scrollpos+currentrotation)+90)+'deg)'})
 				if(pos_to_rot(scrollpos+currentrotation)%360 < 180){
-					$('.camera_wrapper').css({'margin-top':-0.5*spiral_unit + 'px'})
+					// $('.camera_wrapper').css({'margin-top':-0.5*spiral_unit + 'px'})
 				}else{
-					$('.camera_wrapper').css({'margin-top':'0px'})
+					// $('.camera_wrapper').css({'margin-top':'0px'})
 				}
 				rotatetime_timeout = setTimeout(function(){
 					rotate_time(false)
@@ -468,21 +542,20 @@ var text_content=[
 
    				if($('.fake_scroll_wrapper').scrollTop() + $(window).height() > $('.fake_scroll').height()-100) {
    					// --------------------------------------------마지막부 original--------------------------------------------
-     	//  		current_scroll = k
-   		// 			$('.week_lastpage_arrowl').show()
+     	  			//	current_scroll = k
+   		 			//	$('.week_lastpage_arrowl').show()
 					// $('.week_lastpage_arrowr').show()
-   		// 			$('.week_whole_wrapper').addClass('week_whole_wrapper_animate')
-   		// 			if(w/h>1/1){
-		// 		        if(week_lastpage == 0){$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(0+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg)'})}
-		// 		        if(week_lastpage == 1){$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(120+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg)'})}
-		// 		        if(week_lastpage == 2){$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(240+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg)'})}
-		// 		    }else{
-		// 		        if(week_lastpage == 0){$('.week_whole_wrapper').css({'transform':'perspective(30vh) scale(0.55) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(0+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg) '})}
-		// 		        if(week_lastpage == 1){$('.week_whole_wrapper').css({'transform':'perspective(30vh) scale(0.55) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(120+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg) '})}
-		// 		        if(week_lastpage == 2){$('.week_whole_wrapper').css({'transform':'perspective(30vh) scale(0.55) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(240+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg) '})}
-		// 		    }
+   		 			//	$('.week_whole_wrapper').addClass('week_whole_wrapper_animate')
+   		 			//	if(w/h>1/1){
+		 			//        if(week_lastpage == 0){$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(0+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg)'})}
+		 			//        if(week_lastpage == 1){$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(120+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg)'})}
+		 			//        if(week_lastpage == 2){$('.week_whole_wrapper').css({'transform':'perspective(40vh) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(240+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg)'})}
+		 			//    }else{
+		 			//        if(week_lastpage == 0){$('.week_whole_wrapper').css({'transform':'perspective(30vh) scale(0.55) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(0+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg) '})}
+		 			//        if(week_lastpage == 1){$('.week_whole_wrapper').css({'transform':'perspective(30vh) scale(0.55) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(120+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg) '})}
+		 			//        if(week_lastpage == 2){$('.week_whole_wrapper').css({'transform':'perspective(30vh) scale(0.55) rotateX(0deg) translateY( '+ -1*((week_array.length-1)*translatey) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+(240+pos_to_rot(Math.floor(scrollpos/translatey+1)*translatey))+'deg) '})}
+		 			//    }
 					// --------------------------------------------마지막부 original--------------------------------------------
-
             	}else{
             				
             		$('.week_lastpage_arrowl').hide()
@@ -534,16 +607,11 @@ var text_content=[
 							$('.weekwrapper_'+ Math.floor(k+2)).addClass('weekwarpper_next2')
 							$('.weekwrapper_'+ Math.floor(k+3)).addClass('weekwarpper_next3')
             				$('.weekwarpper_prev2').find('.week_board_inner').show()
-							// $('.weekwarpper_prev2').find('.week_board_inner').css({'height':'75%'})
 							$('.weekwarpper_prev1').find('.week_board_inner').show()
-							// $('.weekwarpper_prev1').find('.week_board_inner').css({'height':'200%'})
 							$('.weekwarpper_current').find('.week_board_inner').hide()
 							$('.weekwarpper_next1').find('.week_board_inner').show()
-							// $('.weekwarpper_next1').find('.week_board_inner').css({'height':'100%'})
 							$('.weekwarpper_next2').find('.week_board_inner').show()
-							// $('.weekwarpper_next2').find('.week_board_inner').css({'height':'75%'})
 							$('.weekwarpper_next3').find('.week_board_inner').show()
-							// $('.weekwarpper_next3').find('.week_board_inner').css({'height':'50%'})
 		            		$('.weekwrapper_'+ Math.floor(k-2)).css({transform : 'translateY('+((k-2)*translatey)+'vh) translateY(-20vh) scaleX(4.0) scaleZ(4.0)'})
 		            		$('.weekwrapper_'+ Math.floor(k-1)).css({transform : 'translateY('+((k-1)*translatey)+'vh) translateY(-5vh)  scaleX(2.5) scaleZ(2.5)'})
 		            		$('.weekwrapper_'+ Math.floor(k-0)).css({transform : 'translateY('+((k-0)*translatey)+'vh) translateY(-2.5vh)'})
@@ -553,8 +621,14 @@ var text_content=[
 		            		$('.spiralwrapper').each(function(index){
 			            		if(index<k+1){
 			            			$(this).css({transform:'translateX(-50%) translateY(-50%)  translateY(0%)'})
+			            			$(this).addClass('spiralwrapper_upper')
+			            			$(this).removeClass('spiralwrapper_lower')
 				            	}else{
 			            			$(this).css({transform:'translateX(-50%) translateY(-50%)  translateY(100%)'})
+			            			$(this).addClass('spiralwrapper_lower')
+			            			$(this).removeClass('spiralwrapper_upper')
+			            			var value = parseInt($(this).attr('class').split('spiralwrapper_')[1].split(' ')[0])-(k+1)
+			            			$(this).css({'top':(value*2)+'vw'})
 				            	}
 			            		if(index<k+2){
 			            			$(this).find('.spiral_board_inner_outerwall').css({'opacity':1})
@@ -562,6 +636,11 @@ var text_content=[
 			            			$(this).find('.spiral_board_inner_outerwall').css({'opacity':0})
 				            	}
 		            		})
+			            	infopopup_array = []
+			            	$('.weekwarpper_current').find('.popups_info').each(function(){
+			            		infopopup_array.push(parseInt($(this).parent().attr('class').split('rotatey_')[1].split(' ')[0]))
+			            	})
+			            	console.log('hey')
             			}
 	            	}
 	            	
@@ -687,6 +766,7 @@ var text_content=[
 
 
             function popup(){
+            	// 위에 숫자
             	$('.weekwrapper').each(function(index){
             		var value = $(this).attr('class').split('wrapper_info_month_')[1].split('_')[0]
             		$(this).append('<div class="info_popup_wrapper info_popup_wrapper_1" style="transform: translateX(-50%) rotateY('+(360/7 * 0)+'deg) translateZ('+(-1*(translatez-1))+'vw)"><div class="info_popup">'+popup_counter+'</div></div>')
@@ -760,36 +840,32 @@ var text_content=[
             $('.spiral_frame').click(function(){
             
 				if(window.location.hash && window.location.hash.split('#')[1] === 'week') {
-					$('.week_whole_wrapper_wrapper').addClass('animate transition')
-					$('.spiral_whole_wrapper_wrapper').addClass('animate transition')
-					$('.black').addClass('animate transition')
-					$('.spiral_whole_wrapper').addClass('animate transition')
-					$('.week_whole_wrapper').addClass('animate transition')
-					$('head').append('<style type="text/css">\
-						.week_whole_wrapper.animate{transform:perspective(50000vh) rotateX(-15deg) translateY( '+ week_whole_wrapper_animate_val_1 +'vh) translateZ('+week_whole_wrapper_animate_val_2+'vw) rotateY(0deg)!important}</style>');
-					$('.week_whole_wrapper_wrapper').on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+					// $('.week_whole_wrapper_wrapper').addClass('animate transition')
+					// $('.spiral_whole_wrapper_wrapper').addClass('animate transition')
+					// $('.black').addClass('animate transition')
+					// $('.spiral_whole_wrapper').addClass('animate transition')
+					// $('.week_whole_wrapper').addClass('animate transition')
+					// $('head').append('<style type="text/css">\
+					// 	.week_whole_wrapper.animate{transform:perspective(50000vh) rotateX(-15deg) translateY( '+ week_whole_wrapper_animate_val_1 +'vh) translateZ('+week_whole_wrapper_animate_val_2+'vw) rotateY(0deg)!important}</style>');
+					// $('.week_whole_wrapper_wrapper').on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+					// 	$('.animate').removeClass('animate')
+					// });
 	            		$('body').removeClass('week_view').addClass('spiral_view')
 						window.location.hash = 'spiral';
-						$('.animate').removeClass('animate')
-					});
 				}
             })
 			$('.week_frame').click(function(){
 			
 				if(window.location.hash && window.location.hash.split('#')[1] === 'spiral') {
-					$('.week_whole_wrapper_wrapper').addClass('animate transition')
-					$('.spiral_whole_wrapper_wrapper').addClass('animate transition')
-					$('.black').addClass('animate transition')
-					$('.spiral_whole_wrapper').addClass('animate transition')
-					$('.week_whole_wrapper').addClass('animate transition')
-					$('head').append('<style type="text/css">.week_whole_wrapper.animate{transform:perspective(50000vh) rotateX(-15deg) translateY( '+ week_whole_wrapper_animate_val_1 +'vh) translateZ('+week_whole_wrapper_animate_val_2+'vw)  rotateY(0deg)!important}</style>');
+					// $('.week_whole_wrapper_wrapper').addClass('animate transition')
+					// $('.spiral_whole_wrapper_wrapper').addClass('animate transition')
+					// $('.black').addClass('animate transition')
+					// $('.spiral_whole_wrapper').addClass('animate transition')
+					// $('.week_whole_wrapper').addClass('animate transition')
+					// $('head').append('<style type="text/css">.week_whole_wrapper.animate{transform:perspective(50000vh) rotateX(-15deg) translateY( '+ week_whole_wrapper_animate_val_1 +'vh) translateZ('+week_whole_wrapper_animate_val_2+'vw)  rotateY(0deg)!important}</style>');
 
-					$('.week_whole_wrapper_wrapper').on('transitionend webkitTransitionEnd oTransitionEnd', function () {
 						$('body').removeClass('spiral_view').addClass('week_view')
 						window.location.hash = 'week';
-						$('.animate').removeClass('animate')
-					    // your event handler
-					});
 				}
 			})
             $(document).mousemove(function(e){
