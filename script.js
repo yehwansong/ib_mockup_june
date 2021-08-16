@@ -20,6 +20,7 @@ if(isMobile){$('body').addClass('mobile')}
 	var currentrotation = 0
 	var inittime_d = new Date().toString().split(' ')[0]
 	var popup_counter = 1
+	var scroll_ani_counter =0
 	if(new Date().toString().split(' ')[0]==='Mon'){var inittime_d = 0}
 	if(new Date().toString().split(' ')[0]==='Tue'){var inittime_d = 1}
 	if(new Date().toString().split(' ')[0]==='Wed'){var inittime_d = 2}
@@ -81,6 +82,9 @@ if(window.location.hash && window.location.hash.split('#')[1] === 'spiral') {
 	$('body').addClass('spiral_view hidden')
 } else if(window.location.hash && window.location.hash.split('#')[1] === 'weekhidden'){
 	$('body').addClass('week_view hidden')
+} else if(window.location.hash && window.location.hash.split('#')[1] === 'autoscroll'){
+	$('body').addClass('week_view')
+	scroll_ani()
 }else{
 	// 	$('.week_frame').css({'opacity':0})
 	// 	setTimeout(function(){
@@ -388,6 +392,18 @@ function removeItemAll(arr, value) {
             }
 
 // 4
+
+			function scroll_ani(){
+				var scroll_array = [14,110,238]
+				console.log(parseInt(scroll_array[scroll_ani_counter%scroll_array.length])/scrollspeed*(window.innerHeight/100))
+				$('.fake_scroll_wrapper').scrollTop(parseInt(scroll_array[scroll_ani_counter%scroll_array.length])/scrollspeed*(window.innerHeight/100))
+
+				move_wrapper(true)
+				scroll_ani_counter ++
+				setTimeout(function(){
+					scroll_ani()
+				},1000)
+			}
             function week_scroll(){
 	            $('.fake_scroll_wrapper').on('scroll', function() {
 	            	// console.log(-1*Math.floor(pos_to_rot(scrollpos+currentrotation))%360)
@@ -424,6 +440,7 @@ function removeItemAll(arr, value) {
 						// $('.camera_wrapper').css({'margin-top':'0px'})
             			$('.camera_view').css({'height':(wholeweek_length - currentweek + center_width_r)*spiral_unit +'px'})
 					}
+					console.log(scrollpos)
 				});
             }
             function get_intervention_width(i,spanwidth,text_array){
@@ -449,7 +466,7 @@ function removeItemAll(arr, value) {
 					$('.intervention').append(this)
 					if(index = content.find('iframe').length-1){
 						content.find('iframe').remove()
-						// $('.intervention').append(content.html())
+						// $('.intervention').append(content.html()) 
 					}
 				})
 			    var text = content.html()
