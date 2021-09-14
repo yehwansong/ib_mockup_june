@@ -250,12 +250,11 @@ var text_content=[
 						    append_weekitems(i,k,classname)
 							if(i == number_of_board-1){
 								if(callback){
-									$('.fake_scroll').css({'height':(4*translatey/scrollspeed) + 'vh'})
+									$('.fake_scroll').css({'height':(5*translatey/scrollspeed) + 'vh'})
 									// $('.board').css({'height':height_unit+'vh'})
-									$('.fake_scroll_wrapper').scrollTop(0)
+									$('.fake_scroll_wrapper').scrollTop((translatey*currentweek + initrotation)/scrollspeed*window.innerHeight/100)
 
 									scrollpos = translatey*currentweek + initrotation
-									scrollpos = ($('.fake_scroll').outerHeight())/(window.innerHeight/100) * scrollspeed
 						            rotate_time(true)
 					            	week_scroll()
 				    				move_wrapper(true)
@@ -406,31 +405,20 @@ function removeItemAll(arr, value) {
 				},1000)
 			}
             function week_scroll(){
-            	$('.week_whole_wrapper').css({'transition':'transform 0s'})
 	            $('.fake_scroll_wrapper').on('scroll', function() {
-            	$('.week_whole_wrapper').css({'transition':'transform 0s'})
 	            	// console.log(-1*Math.floor(pos_to_rot(scrollpos+currentrotation))%360)
-	            	console.log(infopopup_array)
+	            	// console.log(infopopup_array)
 			            	for (var i = infopopup_array.length - 1; i >= 0; i--) {
-			            		console.log(pos_to_rot(scrollpos+currentrotation))
+			            		if(-1*Math.floor(pos_to_rot(scrollpos+currentrotation))%360 > (parseInt(infopopup_array[i]) - 5)&&
+			            			-1*Math.floor(pos_to_rot(scrollpos+currentrotation))%360 < (parseInt(infopopup_array[i]) + 5)){
+			            			var value = infopopup_array[i]
+			            			intervention($('.weekwarpper_current').find('.rotatey_'+value ).find('.popups'),value)
+									intervention_on = true
+									scrollpos = scrollpos+currentrotation
+			            			$('.weekwarpper_current').find('.rotatey_'+value).css({'transform':'translateX(-50%) rotateY('+value+'deg) translateZ(15vw)'})
 
-			       //      		if( -1*(360+Math.floor(pos_to_rot(scrollpos+currentrotation))%360) > (parseInt(infopopup_array[i]) - 5)&&
-			       //      			-1*(360+Math.floor(pos_to_rot(scrollpos+currentrotation))%360) < (parseInt(infopopup_array[i]) + 5)){
-			       //      			if(!intervention_on){
-			       //      				var value = infopopup_array[i]
-					     //        		currentrotation = (360-(parseInt(infopopup_array[i]))/360)*translatey
-										// intervention_on = true
-			       //      				$('.week_whole_wrapper').css({'transition':'transform 1.5s'})
-										// $('.week_whole_wrapper').css({'transform':'perspective(50vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)) +'vh) translateZ(30vw)  rotateY('+(pos_to_rot(scrollpos+currentrotation))+'deg)'})
-
-			       //      				$('.weekwarpper_current').find('.rotatey_'+value).css({'transform':'translateX(-50%) rotateY('+value+'deg) translateZ(-4.25vw)'})
-										// setTimeout(function(){
-			       //      					intervention($('.weekwarpper_current').find('.rotatey_'+value ).find('.popups'),value)
-										// },1500)
-			            	
-			       //      			}
-			       //      			removeItemAll(infopopup_array, infopopup_array[i])
-			       //      		}
+			            			removeItemAll(infopopup_array, infopopup_array[i])
+			            		}
 			            	}
 					$('.transition').removeClass('transition')
 
@@ -439,7 +427,6 @@ function removeItemAll(arr, value) {
 	            	}else{
 	            		$('.followcursor').css({'opacity':0})
 					    scrollpos = ($('.fake_scroll').outerHeight()-$('.fake_scroll_wrapper').scrollTop())/(window.innerHeight/100) * scrollspeed
-			            		console.log(pos_to_rot(scrollpos+currentrotation))
 					    // if(scrollpos > 350){ scrollpos = 330 }
 					    move_wrapper(false)
 					    // console.log(scrollpos)
@@ -456,6 +443,22 @@ function removeItemAll(arr, value) {
 					console.log(scrollpos)
 				});
             }
+            function get_intervention_width(i,spanwidth,text_array){
+            				$('.line_'+(i+1)).find('.textspan').each(function(index){
+            					spanwidth = spanwidth + $(this).outerWidth()
+            					console.log(index)
+            					if(index == $('.line_'+(i+1)).find('.textspan').length-1){
+            						if(spanwidth == 0){
+            							setTimeout(function(){get_intervention_width(i,spanwidth,text_array)},1000)
+            						}else{
+			            				fontsize = w / spanwidth *10 
+			            				// $('.line_'+(i+1)).find('span').attr('style', 'font-size:'+fontsize+'vw !important');
+					            		if(i==(text_array.length-1)){
+					            		}
+            						}
+            					}
+            				})
+            }
             function intervention(content,degree){
              	$('.intervention').empty()
 				$('.intervention_wrapper').show()
@@ -463,6 +466,7 @@ function removeItemAll(arr, value) {
 					$('.intervention').append(this)
 					if(index = content.find('iframe').length-1){
 						content.find('iframe').remove()
+						// $('.intervention').append(content.html()) 
 					}
 				})
 			    var text = content.html()
@@ -480,24 +484,27 @@ function removeItemAll(arr, value) {
 		        				$('.textspan').hide()
 		    					$('.intervention_hide').hide()
 						   		$('.intervention_wrapper').css({'opacity':1})
-			            	},50)
+			            	},500)
             			}
             		}
             	$('.intervention_close').click(function(){
             				$('.weekwarpper_current').find('.rotatey_'+degree).css({'transform':'translateX(-50%) rotateY('+degree+'deg) translateZ(-24vw)'})
-							$('.week_whole_wrapper').css({'transform':'perspective(50vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})
 							intervention_on = false
 	            			$('.textspan').hide()
-		    					$('.intervention_hide').show()
 				    		$('.intervention_wrapper').hide()
 						   	$('.intervention_wrapper').css({'opacity':0})
+			            			setTimeout(function(){
+			            				infopopup_array.push(value)
+			            				console.log(infopopup_array)
+			            			},20000)
+            				$('.intervention_hide').show()
             	})
             }
             function text_animation(spancounter_ani){
             	$('.textspan_'+spancounter_ani).show()
             	setTimeout(function(){
             		text_animation(spancounter_ani+1)
-            	},100)
+            	},500)
             }
             function rotate_time(init){
             	currentrotation = currentrotation + 360/(24*60*7)
@@ -511,7 +518,7 @@ function removeItemAll(arr, value) {
 					// $('.camera_wrapper').css({'margin-top':'0px'})
 				}
 				rotatetime_timeout = setTimeout(function(){
-					// rotate_time(false)
+					rotate_time(false)
 				},60*1000)
             }
             function move_wrapper(init){
@@ -654,7 +661,6 @@ function removeItemAll(arr, value) {
             			}
 	            	}
 	            	
-	   						console.log(pos_to_rot(scrollpos+currentrotation))
             		if(scrolldirection === 'down' && transition>0){
 	   					if(w/h>1/1){
 							$('.week_whole_wrapper').css({'transform':' perspective(40vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)-(translatey-transition)) +'vh) translateZ('+wrapper_translatez+'vw)  rotateY('+pos_to_rot(scrollpos+currentrotation)+'deg)'})
@@ -839,19 +845,6 @@ function removeItemAll(arr, value) {
                         	$('.popupbox').html(' ')
 	                    })
                     	
-						$('.popups').click(function(){
-			    			if(!intervention_on){
-			    				var value = parseInt($(this).parent().attr('class').split('rotatey_')[1].split(' ')[0])
-								intervention_on = true
-			    				$('.week_whole_wrapper').css({'transition':'transform 1s'})
-								$('.week_whole_wrapper').css({'transform':'perspective(50vh) rotateX(0deg) translateY( '+ (-1*(Math.floor(scrollpos/translatey)*translatey)) +'vh) translateZ(30vw)  rotateY('+(pos_to_rot(scrollpos+currentrotation))+'deg)'})
-			    				$('.weekwarpper_current').find('.rotatey_'+value).css({'transform':'translateX(-50%) rotateY('+value+'deg) translateZ(-4.25vw)'})
-								setTimeout(function(){
-			    					intervention($('.weekwarpper_current').find('.rotatey_'+value ).find('.popups'),value)
-								},1000)
-			    			}
-			    			removeItemAll(infopopup_array, infopopup_array[i])
-						})
                     }
             $('.spiral_view_button').click(function(){
             	$('body').removeClass('week_view').addClass('spiral_view')
